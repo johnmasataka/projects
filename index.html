@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John's Work</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" data-key="home">Home</a></li>
+                <li><a href="about.html" data-key="about">About</a></li>
+                <!-- <li><a href="contact.html" data-key="contact">Contact</a></li> -->
+                <li><a href="map.html" data-key="map">Map</a></li>
+                <!-- <li><a href="news.html" data-key="news">News</a></li> -->
+                <li><a href="work.html" data-key="work">Work</a></li>
+                <li><a href="https://www.instagram.com/jjjhiker/" target="_blank" data-key="instagram">Instagram</a></li>
+                <li><a href="https://www.linkedin.com/in/johnmasataka-xianfeng-jiang/" target="_blank" data-key="linkedin">LinkedIn</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국인</option>
+                <option value="zh-CN">简体中文</option>
+                <option value="zh-TW">繁體中文</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-slideshow" id="heroSlideshow">
+                <div class="hero-slide active" style="background-image: url('images/john-portrait.jpg')"></div>
+                <div class="hero-slide" style="background-image: url('images/archtalk.jpg')"></div>
+                <div class="hero-slide" style="background-image: url('images/lingobim.png')"></div>
+                <div class="hero-slide" style="background-image: url('images/manav.jpg')"></div>
+                <div class="hero-slide" style="background-image: url('images/building-energy.png')"></div>
+                <div class="hero-slide" style="background-image: url('images/spatial-experience.png')"></div>
+            </div>
+            <h1 data-key="concept">John Masataka Xianfeng Jiang's work at Columbia University GSAPP</h1>
+            <p data-key="conceptDetail">Exploring the intersection of architecture, urban design, and technology</p>
+            <div class="scroll-down" onclick="scrollToProfile()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/>
+                </svg>
+            </div>
+        </section>
+
+        <section class="profile" id="profile">
+            <h2>PROFILE</h2>
+
+                <div class="english">
+                    <h3>John Xianfeng Jiang</h3>
+                    <p>Kengo Kuma and Associates<br>
+                        Columbia University<br>
+                    Hokkaido University<br></p>
+                    <!-- <p>2024-2025 &nbsp Master's Degree in Computation<br>
+                        Columbia University (New York, USA)<br>
+                    2017-2024 &nbsp Project Manager<br>
+                        Kengo Kuma and Associates (Tokyo, JAPAN and Los Angeles, USA)<br>
+                        2014-2017 &nbsp Master's Degree in Architecture<br>
+                        Hokkaido University (Sapporo, JAPAN)<br> -->
+                        <!-- 2016-2017<br>
+                        Jun Igarashi Architects (Tokyo, JAPAN)<br> -->
+                </div>
+            </div>
+        </section>
+
+        <section class="project">
+            <h2>PROJECTS</h2>
+            <div class="project-grid">
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" target="_blank">
+                    <div class="project-image" style="background-image: url('images/Archtalk.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Archtalk:<br>Conversational Architectural Design</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/LingoBIMWeb/" class="project-item" target="_blank">
+                    <div class="project-image" style="background-image: url('images/lingobim.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">LingoBIM</h3>
+                    </div>
+                </a>
+                <a href="https://johnxianfengjiang.cargo.site/manav" class="project-item" target="_blank">
+                    <div class="project-image" style="background-image: url('images/manav.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Manav:<br>Posture-based Furniture Generation</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/DataVizBuildingEnergy/" class="project-item" target="_blank">
+                    <div class="project-image" style="background-image: url('images/building-energy.png'); background-position: 71% center;"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Apartment Energy Usage and Property Prices in New York</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/ExplorationsOnSpatialExperience/" class="project-item" target="_blank">
+                    <div class="project-image" style="background-image: url('images/spatial-experience.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Architectural Experience</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/TennisScorePro/" class="project-item" target="_blank">
+                    <div class="project-image" style="background-image: url('images/tennis-scoring-trainer.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Tennis Scoring Trainer</h3>
+                    </div>
+                </a>                
+                <a href="https://gsapp-cdp.github.io/archive/projects/2025/john/" class="project-item" target="_blank">
+                    <div class="project-image" style="background-image: url('images/archtalk.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Spatial Semantics</h3>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/file/d/1dJRAwI5ER-EsVBl59GJ2ukF8fFr2M7Gz/view?usp=drive_link" class="project-item" target="_blank">
+                    <div class="project-image" style="background-image: url('images/ColorCode.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">ColorCode:<br>A Machine Learning Study of Urban Facade Colors and Property Attributes</h3>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright © - All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function scrollToProfile() {
+            const profileSection = document.getElementById('profile');
+            profileSection.scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html> 

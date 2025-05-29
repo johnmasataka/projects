@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map - John's Work</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <!-- Mapbox GL JS CSS -->
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
+    <style>
+        .map-container {
+            width: 100%;
+            height: 600px;
+            position: relative;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        .map-controls {
+            position: relative;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 10px;
+            justify-content: flex-start;
+        }
+        .map-button {
+            padding: 8px 16px;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Lexend', sans-serif;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        .map-button:hover {
+            background-color: #f0f0f0;
+        }
+        .map-button.active {
+            background-color: #383838;
+            color: white;
+            border-color: #383838;
+        }
+        .mapboxgl-popup {
+            max-width: 200px;
+            font-family: 'Lexend', sans-serif;
+        }
+        .mapboxgl-popup-content {
+            text-align: center;
+            padding: 10px;
+            background-color: #ffffff;
+            color: #383838;
+        }
+        .project-preview-popup {
+            position: absolute;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 10px;
+            z-index: 1000;
+            max-width: 300px;
+            display: none;
+        }
+        .location-header {
+            text-align: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            font-family: 'Lexend', sans-serif;
+        }
+        .location-header h3 {
+            font-size: 18px;
+            color: #383838;
+            margin: 0;
+            font-weight: 500;
+        }
+        .location-header p {
+            font-size: 14px;
+            color: #666;
+            margin: 5px 0 0 0;
+        }
+        .project-preview-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        .project-preview-title {
+            font-family: 'Lexend', sans-serif;
+            font-size: 14px;
+            color: #383838;
+            margin: 5px 0;
+            text-align: center;
+        }
+        .preview-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" data-key="home">Home</a></li>
+                <li><a href="about.html" data-key="about">About</a></li>
+                <!-- <li><a href="contact.html" data-key="contact">Contact</a></li> -->
+                <li><a href="map.html" data-key="map">Map</a></li>
+                <!-- <li><a href="news.html" data-key="news">News</a></li> -->
+                <li><a href="work.html" data-key="work">Work</a></li>
+                <li><a href="https://www.instagram.com/jjjhiker/" target="_blank" data-key="instagram">Instagram</a></li>
+                <li><a href="https://www.linkedin.com/in/johnmasataka-xianfeng-jiang/" target="_blank" data-key="linkedin">LinkedIn</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국인</option>
+                <option value="zh-CN">简体中文</option>
+                <option value="zh-TW">繁體中文</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <section class="map">
+            <!-- <h1>Interactive World Map</h1> -->
+            <div class="map-controls">
+                <button id="flatMap" class="map-button active">Flat Map</button>
+                <button id="earth" class="map-button">Earth</button>
+            </div>
+            <div class="map-content">
+                <div class="map-container">
+                    <div id="map"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright © - All Rights Reserved.</p>
+    </footer>
+    <!-- Mapbox GL JS -->
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js'></script>
+    <script>
+        // Replace with your Mapbox access token
+        mapboxgl.accessToken = 'pk.eyJ1Ijoiam9obm1hc2F0YWthIiwiYSI6ImNseDl0ZnByMzJ1cnQyam9lbnB5ajQ3d3EifQ.vDNx6tuvH4CxRBRu-Tt0Tg';
+
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/light-v11',
+            center: [0, 0],
+            zoom: 1.5,
+            projection: 'mercator'
+        });
+
+        // City coordinates with country information
+        const cities = [
+            { name: 'Toruń', country: 'Poland', coordinates: [18.5984, 53.0138] },
+            { name: 'Honolulu', country: 'United States', coordinates: [-157.8583, 21.3069] },
+            { name: 'Los Angeles', country: 'United States', coordinates: [-118.2437, 34.0522] },
+            { name: 'Ishigaki', country: 'Japan', coordinates: [124.1556, 24.3406] },
+            { name: 'London', country: 'United Kingdom', coordinates: [-0.1276, 51.5074] },
+            { name: 'Portland', country: 'United States', coordinates: [-122.6765, 45.5155] },
+            { name: 'Miami', country: 'United States', coordinates: [-80.1918, 25.7617] },
+            { name: 'Vancouver', country: 'Canada', coordinates: [-123.1207, 49.2827] },
+            { name: 'Sapporo', country: 'Japan', coordinates: [141.3545, 43.0618] },
+            { name: 'Borabora', country: 'French Polynesia', coordinates: [-151.7517, -16.5004] },
+            { name: 'Nagasaki', country: 'Japan', coordinates: [129.8777, 32.7503] },
+            { name: 'Concepción', country: 'Chile', coordinates: [-73.0498, -36.8270] },
+            { name: 'Taichung', country: 'Taiwan', coordinates: [120.6839, 24.1477] },
+            { name: 'San Francisco', country: 'United States', coordinates: [-122.4194, 37.7749] },
+            { name: 'Neom', country: 'Saudi Arabia', coordinates: [35.0, 28.0] },
+            { name: 'Jakarta', country: 'Indonesia', coordinates: [106.8456, -6.2088] },
+            { name: 'Bali', country: 'Indonesia', coordinates: [115.1889, -8.4095] },
+            { name: 'Atlanta', country: 'United States', coordinates: [-84.3880, 33.7490] },
+            { name: 'Naha', country: 'Japan', coordinates: [127.6791, 26.2124] },
+            { name: 'Kyoto', country: 'Japan', coordinates: [135.7681, 35.0116] },
+            { name: 'New York', country: 'United States', coordinates: [-74.0060, 40.7128] }
+        ];
+
+        // Create a popup element for project previews
+        const previewPopup = document.createElement('div');
+        previewPopup.className = 'project-preview-popup';
+        document.body.appendChild(previewPopup);
+
+        // Function to get projects for a city
+        function getProjectsForCity(cityName) {
+            // Define tag variations for cities
+            const cityTagVariations = {
+                'New York': ['newyork'],
+                'Los Angeles': ['la'],
+                'San Francisco': ['sf'],
+                'Bora Bora': ['borabora'],
+                'Bali': ['bali'],
+                // Add other variations if needed
+            };
+
+            // Fetch projects from work.html
+            return fetch('work.html')
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const projects = [];
+                    
+                    // Find all project items that have the city tag
+                    doc.querySelectorAll('.project-item').forEach(item => {
+                        const tags = item.getAttribute('data-tags').toLowerCase().split(' ');
+                        const cityNameLower = cityName.toLowerCase();
+                        
+                        // Get variations for this city
+                        const variations = cityTagVariations[cityName] || [];
+                        
+                        // Check if the project has the city tag or any of its variations
+                        if (tags.includes(cityNameLower) || variations.some(v => tags.includes(v))) {
+                            const imageUrl = item.querySelector('.project-image').style.backgroundImage
+                                .replace('url(', '').replace(')', '').replace(/"/g, '');
+                            const title = item.querySelector('.project-title').textContent;
+                            projects.push({ imageUrl, title });
+                        }
+                    });
+                    
+                    return projects;
+                });
+        }
+
+        // Add markers when map loads
+        map.on('load', () => {
+            cities.forEach(city => {
+                // Create marker element
+                const el = document.createElement('div');
+                el.className = 'marker';
+                el.style.width = '16px';
+                el.style.height = '16px';
+                el.style.backgroundColor = '#383838';
+                el.style.border = '2px solid #ffffff';
+                el.style.borderRadius = '50%';
+                el.style.cursor = 'pointer';
+                el.style.boxShadow = '0 0 2px rgba(0,0,0,0.3)';
+
+                // Create and add the marker
+                const marker = new mapboxgl.Marker(el)
+                    .setLngLat(city.coordinates)
+                    .addTo(map);
+
+                // Show projects on hover
+                el.addEventListener('mouseenter', async (e) => {
+                    const projects = await getProjectsForCity(city.name);
+                    if (projects.length > 0) {
+                        // Create preview content with location header
+                        let previewContent = `
+                            <div class="location-header">
+                                <h3>${city.name}</h3>
+                                <p>${city.country}</p>
+                            </div>
+                            <div class="preview-container">
+                        `;
+                        projects.forEach(project => {
+                            previewContent += `
+                                <div>
+                                    <div class="project-preview-image" style="background-image: url(${project.imageUrl})"></div>
+                                    <div class="project-preview-title">${project.title}</div>
+                                </div>
+                            `;
+                        });
+                        previewContent += '</div>';
+
+                        // Update and show popup
+                        previewPopup.innerHTML = previewContent;
+                        previewPopup.style.display = 'block';
+                        
+                        // Position popup near the marker
+                        const markerRect = el.getBoundingClientRect();
+                        previewPopup.style.left = `${markerRect.right + 10}px`;
+                        previewPopup.style.top = `${markerRect.top}px`;
+                    }
+                });
+
+                // Hide preview on mouse leave
+                el.addEventListener('mouseleave', () => {
+                    previewPopup.style.display = 'none';
+                });
+            });
+
+            // Apply monochrome filter to all layers
+            const layers = map.getStyle().layers;
+            for (const layer of layers) {
+                if (layer.type === 'symbol') continue;
+                map.setPaintProperty(layer.id, 'raster-saturation', -1);
+                map.setPaintProperty(layer.id, 'raster-contrast', 0.5);
+            }
+        });
+
+        const flatMapBtn = document.getElementById('flatMap');
+        const earthBtn = document.getElementById('earth');
+
+        flatMapBtn.addEventListener('click', () => {
+            map.setProjection('mercator');
+            flatMapBtn.classList.add('active');
+            earthBtn.classList.remove('active');
+        });
+
+        earthBtn.addEventListener('click', () => {
+            map.setProjection('globe');
+            earthBtn.classList.add('active');
+            flatMapBtn.classList.remove('active');
+        });
+
+        // Add navigation controls
+        map.addControl(new mapboxgl.NavigationControl());
+    </script>
+    <script src="script.js"></script>
+</body>
+</html> 

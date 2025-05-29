@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - John's Work</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" data-key="home">Home</a></li>
+                <li><a href="about.html" data-key="about">About</a></li>
+                <!-- <li><a href="contact.html" data-key="contact">Contact</a></li> -->
+                <li><a href="map.html" data-key="map">Map</a></li>
+                <!-- <li><a href="news.html" data-key="news">News</a></li> -->
+                <li><a href="work.html" data-key="work">Work</a></li>
+                <li><a href="https://www.instagram.com/jjjhiker/" target="_blank" data-key="instagram">Instagram</a></li>
+                <li><a href="https://www.linkedin.com/in/johnmasataka-xianfeng-jiang/" target="_blank" data-key="linkedin">LinkedIn</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="ja">日本語</option>
+                <option value="ko">한국인</option>
+                <option value="zh-CN">简体中文</option>
+                <option value="zh-TW">繁體中文</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <section class="project">
+            <h2>PROJECTS<br></h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="arch">Arch</button>
+                <button class="filter-btn" data-filter="tech">Tech</button>
+            </div>
+            <div class="arch-filters" style="display: none;">
+                <div class="dropdown-container">
+                    <button class="dropdown-btn" data-dropdown="locations">Locations</button>
+                    <div class="dropdown-content">
+                        <button class="filter-option" data-filter="location-na" data-region-tags="us,ca">North America</button>
+                        <button class="filter-option" data-filter="location-eu" data-region-tags="eu">Europe</button>
+                        <button class="filter-option" data-filter="location-asia" data-region-tags="as">Asia</button>
+                        <button class="filter-option" data-filter="location-others" data-region-tags="ot">Others</button>
+                    </div>
+                </div>
+                <div class="dropdown-container">
+                    <button class="dropdown-btn" data-dropdown="use">Use</button>
+                    <div class="dropdown-content">
+                        <button class="filter-option" data-filter="use-hospitality" data-use-tag="hospitality">Hospitality</button>
+                        <button class="filter-option" data-filter="use-commercial" data-use-tag="commercial">Commercial</button>
+                        <button class="filter-option" data-filter="use-residential" data-use-tag="residential">Residential</button>
+                        <button class="filter-option" data-filter="use-cultural" data-use-tag="cultural">Cultural</button>
+                        <button class="filter-option" data-filter="use-pavilion" data-use-tag="pavilion">Pavilion</button>
+                    </div>
+                </div>
+                <div class="dropdown-container">
+                    <button class="dropdown-btn" data-dropdown="types">Types</button>
+                    <div class="dropdown-content">
+                        <button class="filter-option" data-filter="type-architecture" data-type-tag="exterior">Architecture</button>
+                        <button class="filter-option" data-filter="type-interior" data-type-tag="interior">Interior</button>
+                        <button class="filter-option" data-filter="type-furniture" data-type-tag="furniture">Furniture</button>
+                    </div>
+                </div>
+            </div>
+            <div class="project-grid">
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch eu poland toruń cultural exterior interior" target="_blank">
+                    <div class="project-image" style="background-image: url('images/cinema.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">European Film Center Camerimage (ECFC)</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch us honolulu hospitality residential exterior interior" target="_blank">
+                    <div class="project-image" style="background-image: url('images/ko-olina.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Ko Olina</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch us la residential exterior interior" target="_blank">
+                    <div class="project-image" style="background-image: url('images/brooktree.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">LA Brooktree House</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch as jp ishigaki hospitality cultural pavilion exterior " target="_blank">
+                    <div class="project-image" style="background-image: url('images/yoga.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Yoga Pavilion</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch eu uk london commercial interior" target="_blank">
+                    <div class="project-image" style="background-image: url('images/endo.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Endo at the Rotunda </h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch us portland cultural commercial interior" target="_blank">
+                    <div class="project-image" style="background-image: url('images/pjg.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Portland Education Center</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch us miami hospitality residential exterior interior" target="_blank">
+                    <div class="project-image" style="background-image: url('images/aman-miami-beach.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Aman Miami Beach </h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch ca vancouver residential commercial hospitality exterior interior" target="_blank">
+                    <div class="project-image" style="background-image: url('images/alberni.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">1550 Alberni Street Tower</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch jp as sapporo pavilion cultural exterior " target="_blank">
+                    <div class="project-image" style="background-image: url('images/strobile.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Strobile Pavilion</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch us honolulu hospitality commercial exterior interior" target="_blank">
+                    <div class="project-image" style="background-image: url('images/restaurant.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Mediterranean Restaurant </h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch ot tahiti borabora hospitality residential commercial exterior " target="_blank">
+                    <div class="project-image" style="background-image: url('images/aman-borabora.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Aman Bora Bora</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch as jp nagasaki hospitality pavilion exterior " target="_blank">
+                    <div class="project-image" style="background-image: url('images/onsen.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Rocky Onsen</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch ot chile concepción commercial exterior comp" target="_blank">
+                    <div class="project-image" style="background-image: url('images/arauco.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Arauco Headquarter</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch as tw cn taichung commercial residential hospitality exterior comp" target="_blank">
+                    <div class="project-image" style="background-image: url('images/taiwan-tower.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Taiwan Tower</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch us sf residential exterior " target="_blank">
+                    <div class="project-image" style="background-image: url('images/orinda.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Orinda House</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch ot saudi neom commercial exterior " target="_blank">
+                    <div class="project-image" style="background-image: url('images/neom.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Neom Airport</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch as tw cn taichung commercial cultural exterior " target="_blank">
+                    <div class="project-image" style="background-image: url('images/church.jpeg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">CMP Intercontinental Hotel Church</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch as in bali commercial hospitality exterior " target="_blank">
+                    <div class="project-image" style="background-image: url('images/amankila.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Amankila</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch as in jakarta commercial residential exterior " target="_blank">
+                    <div class="project-image" style="background-image: url('images/orange.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Lippo Orange County</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch ca vancouver commercial interior" target="_blank">
+                    <div class="project-image" style="background-image: url('images/waketokuyama.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Waketokuyama</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch us atlanta hospitality residential exterior interior" target="_blank">
+                    <div class="project-image" style="background-image: url('images/recreation.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Recreation Center</h3>
+                    </div>
+                </a>
+
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch as jp okinawa naha furniture interior" target="_blank">
+                    <div class="project-image" style="background-image: url('images/kigumi.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Kigumi</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch as jp kyoto furniture interior" target="_blank">
+                    <div class="project-image" style="background-image: url('images/origami.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Origami</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="arch us honolulu eu italy furniture interior hospitality residential" target="_blank">
+                    <div class="project-image" style="background-image: url('images/italia.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Italia B&B Co-branded Furniture</h3>
+                    </div>
+                </a>
+
+                <a href="https://johnmasataka.github.io/Archtalk/index.html" class="project-item" data-tags="tech newyork" target="_blank">
+                    <div class="project-image" style="background-image: url('images/Archtalk.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Archtalk:<br>Conversational Architectural Design</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/LingoBIMWeb/" class="project-item" data-tags="tech newyork" target="_blank">
+                    <div class="project-image" style="background-image: url('images/lingobim.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">LingoBIM</h3>
+                    </div>
+                </a>
+                <a href="https://johnxianfengjiang.cargo.site/manav" class="project-item" data-tags="tech newyork" target="_blank">
+                    <div class="project-image" style="background-image: url('images/manav.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Manav:<br>Posture-based Furniture Generation</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/DataVizBuildingEnergy/" class="project-item" data-tags="tech us newyork" target="_blank">
+                    <div class="project-image" style="background-image: url('images/building-energy.png'); background-position: 71% center;"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Apartment Energy Usage and Property Prices in New York</h3>
+                    </div>
+                </a>
+                <a href="https://johnxianfengjiang.cargo.site/experience" class="project-item" data-tags="tech us newyork" target="_blank">
+                    <div class="project-image" style="background-image: url('images/spatial-experience.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Architectural Experience</h3>
+                    </div>
+                </a>
+                <a href="https://johnmasataka.github.io/TennisScorePro/" class="project-item" data-tags="tech newyork" target="_blank">
+                    <div class="project-image" style="background-image: url('images/tennis-scoring-trainer.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Tennis Scoring Trainer</h3>
+                    </div>
+                </a>                
+                <a href="https://gsapp-cdp.github.io/archive/projects/2025/john/" class="project-item" data-tags="tech newyork" target="_blank">
+                    <div class="project-image" style="background-image: url('images/archtalk.jpg')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">Spatial Semantics</h3>
+                    </div>
+                </a>
+                <a href="https://drive.google.com/file/d/1dJRAwI5ER-EsVBl59GJ2ukF8fFr2M7Gz/view?usp=drive_link" class="project-item" data-tags="tech us newyork" target="_blank">
+                    <div class="project-image" style="background-image: url('images/ColorCode.png')"></div>
+                    <div class="project-overlay">
+                        <h3 class="project-title">ColorCode:<br>A Machine Learning Study of Urban Facade Colors and Property Attributes</h3>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Copyright © - All Rights Reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html> 
