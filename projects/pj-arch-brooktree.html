@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LA Brooktree House</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header and Navigation */
+        header {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .language-selector select {
+            padding: 8px 30px 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 14px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .language-selector select:focus {
+            outline: none;
+            border-color: #333;
+        }
+
+        /* Project-specific styles */
+        main {
+            margin-top: 0;
+            padding: 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 65vh;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            margin-top: 60px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            padding: 2rem;
+            max-width: 50%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                max-width: 90%;
+            }
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: #000;
+            padding: 0;
+            width: 100%;
+            text-align: left;
+        }
+
+        .language-options {
+            display: flex;
+            gap: 0.1rem;
+            margin-bottom: 2rem;
+            padding: 0;
+            width: 100%;
+        }
+
+        .language-btn {
+            padding: 0.5rem 0;
+            margin-right: 2rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            text-align: left;
+        }
+
+        .language-btn.active {
+            opacity: 1;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .project-details {
+            margin-bottom: 2rem;
+            padding: 0;
+        }
+
+        .project-details p {
+            margin: 0.5rem 0;
+            padding: 0;
+        }
+
+        .project-description {
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .project-description p {
+            margin-bottom: 0.75rem;
+        }
+
+        .photo-album {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 0.1rem;
+            padding: 2rem 0;
+        }
+
+        .photo-album img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border-radius: 4px;
+        }
+
+        .photo-album img:hover {
+            transform: scale(1.02);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-image {
+            max-width: 85%;
+            max-height: 85vh;
+            object-fit: contain;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            pointer-events: none;
+        }
+
+        .modal-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            color: white;
+            font-size: 2rem;
+            border-radius: 50%;
+            transition: background-color 0.3s, transform 0.3s;
+            pointer-events: auto;
+        }
+
+        .modal-nav button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            transition: transform 0.3s;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.1);
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html" data-translate="nav_home">Home</a></li>
+                <li><a href="../about.html" data-translate="nav_about">About</a></li>
+                <li><a href="../contact.html" data-translate="nav_contact">Contact</a></li>
+                <li><a href="../map.html" data-translate="nav_map">Map</a></li>
+                <li><a href="../work.html" data-translate="nav_work">Work</a></li>
+                <li><a href="https://www.instagram.com/jjjhiker/" target="_blank" data-translate="nav_instagram">Instagram</a></li>
+                <li><a href="https://www.linkedin.com/in/johnmasataka-xianfeng-jiang/" target="_blank" data-translate="nav_linkedin">LinkedIn</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en" data-lang="en">English</option>
+                <option value="ja" data-lang="ja">日本語</option>
+                <option value="zh-CN" data-lang="zh-CN">简体中文</option>
+                <option value="zh-TW" data-lang="zh-TW">繁體中文</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-image">
+            <img src="../images/brooktree.jpg" alt="LA Brooktree House Hero Image">
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="project-title" data-translate="title">LA Brooktree House</h1>
+            
+            <div class="language-options">
+                <button class="language-btn active" data-lang="en">English</button>
+                <button class="language-btn" data-lang="ja">日本語</button>
+                <button class="language-btn" data-lang="zh-CN">简体中文</button>
+                <button class="language-btn" data-lang="zh-TW">繁體中文</button>
+            </div>
+
+            <div class="project-details">
+                <p><strong data-translate="location">Location</strong>: <span data-translate="locationContent">Los Angeles, California, USA</span></p>
+                <p><strong data-translate="program">Program</strong>: <span data-translate="programContent">Residential</span></p>
+                <p><strong data-translate="year">Year</strong>: <span data-translate="yearContent">2023</span></p>
+                <p><strong data-translate="team">Team</strong>: <span data-translate="teamContent">John Jiang</span></p>
+                <p><strong data-translate="info">Info</strong>: <span data-translate="infoContent">Modern Single-Family Residence</span></p>
+            </div>
+
+            <div class="project-description">
+                <p data-translate="description1">The LA Brooktree House is a contemporary residential project that reimagines modern living in the heart of Los Angeles. The design emphasizes clean lines, natural light, and seamless indoor-outdoor connections, creating a sophisticated yet comfortable living environment.</p>
+                <p data-translate="description2">The architecture responds to the site's unique topography and climate, incorporating sustainable features and passive design strategies. Large windows and sliding glass doors frame views of the surrounding landscape while promoting natural ventilation and reducing energy consumption.</p>
+                <p data-translate="description3">Interior spaces are thoughtfully arranged to maximize functionality and flow, with an open-plan layout that encourages social interaction while maintaining private areas for retreat. High-quality materials and careful detailing throughout reflect a commitment to craftsmanship and durability.</p>
+            </div>
+        </div>
+
+        <div class="photo-album">
+            <img src="../images/brooktree.jpg" alt="LA Brooktree House Image 1">
+            <img src="../images/brooktree.jpg" alt="LA Brooktree House Image 2">
+            <img src="../images/brooktree.jpg" alt="LA Brooktree House Image 3">
+            <img src="../images/brooktree.jpg" alt="LA Brooktree House Image 4">
+            <img src="../images/brooktree.jpg" alt="LA Brooktree House Image 5">
+            <img src="../images/brooktree.jpg" alt="LA Brooktree House Image 6">
+        </div>
+
+        <div class="modal">
+            <button class="close-modal">×</button>
+            <div class="modal-content">
+                <img class="modal-image" src="" alt="Modal Image">
+                <div class="modal-nav">
+                    <button class="prev-btn">←</button>
+                    <button class="next-btn">→</button>
+                </div>
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © - All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Ensure DOM is fully loaded before initializing
+        document.addEventListener('DOMContentLoaded', function() {
+            // Prevent right-click on the entire page
+            document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+            // Prevent drag and drop of images
+            document.addEventListener('dragstart', (e) => e.preventDefault());
+
+            // Language content including navigation translations
+            const translations = {
+                'en': {
+                    // Navigation
+                    nav_home: 'Home',
+                    nav_about: 'About',
+                    nav_contact: 'Contact',
+                    nav_map: 'Map',
+                    nav_work: 'Work',
+                    nav_instagram: 'Instagram',
+                    nav_linkedin: 'LinkedIn',
+                    // Project content
+                    title: 'LA Brooktree House',
+                    location: 'Location',
+                    locationContent: 'Los Angeles, California, USA',
+                    program: 'Program',
+                    programContent: 'Residential',
+                    year: 'Year',
+                    yearContent: '2023',
+                    team: 'Team',
+                    teamContent: 'John Jiang',
+                    info: 'Info',
+                    infoContent: 'Modern Single-Family Residence',
+                    description1: 'The LA Brooktree House is a contemporary residential project that reimagines modern living in the heart of Los Angeles. The design emphasizes clean lines, natural light, and seamless indoor-outdoor connections, creating a sophisticated yet comfortable living environment.',
+                    description2: 'The architecture responds to the site\'s unique topography and climate, incorporating sustainable features and passive design strategies. Large windows and sliding glass doors frame views of the surrounding landscape while promoting natural ventilation and reducing energy consumption.',
+                    description3: 'Interior spaces are thoughtfully arranged to maximize functionality and flow, with an open-plan layout that encourages social interaction while maintaining private areas for retreat. High-quality materials and careful detailing throughout reflect a commitment to craftsmanship and durability.'
+                },
+                'ja': {
+                    // Navigation
+                    nav_home: 'ホーム',
+                    nav_about: '概要',
+                    nav_contact: '連絡先',
+                    nav_map: 'マップ',
+                    nav_work: '作品',
+                    nav_instagram: 'インスタグラム',
+                    nav_linkedin: 'リンクトイン',
+                    // Project content
+                    title: 'LAブルックツリーハウス',
+                    location: '場所',
+                    locationContent: 'ロサンゼルス、カリフォルニア州、アメリカ',
+                    program: 'プログラム',
+                    programContent: '住宅',
+                    year: '年',
+                    yearContent: '2023',
+                    team: 'チーム',
+                    teamContent: 'ジョン・ジャン',
+                    info: '情報',
+                    infoContent: 'モダン一戸建て住宅',
+                    description1: 'LAブルックツリーハウスは、ロサンゼルスの中心部におけるモダンな暮らしを再構築する現代的な住宅プロジェクトです。デザインは、クリーンなライン、自然光、そしてシームレスな室内外のつながりを重視し、洗練された快適な生活環境を創造しています。',
+                    description2: '建築は、敷地特有の地形と気候に応答し、持続可能な機能とパッシブデザイン戦略を取り入れています。大きな窓とスライディングガラスドアは、周囲の景観への眺めを枠取りしながら、自然換気を促進しエネルギー消費を削減します。',
+                    description3: '室内空間は、機能性とフローを最大化するよう慎重に配置され、プライベートな休息スペースを維持しながら社会的な交流を促すオープンプランレイアウトを採用しています。高品質な材料と細部への丁寧な配慮は、職人技と耐久性への commitment を反映しています。'
+                },
+                'zh-CN': {
+                    // Navigation
+                    nav_home: '首页',
+                    nav_about: '关于',
+                    nav_contact: '联系',
+                    nav_map: '地图',
+                    nav_work: '作品',
+                    nav_instagram: 'INS',
+                    nav_linkedin: '领英',
+                    // Project content
+                    title: '洛杉矶布鲁克树屋',
+                    location: '地点',
+                    locationContent: '洛杉矶，加利福尼亚州，美国',
+                    program: '项目类型',
+                    programContent: '住宅',
+                    year: '年份',
+                    yearContent: '2023',
+                    team: '团队',
+                    teamContent: '江显峰',
+                    info: '信息',
+                    infoContent: '现代独立住宅',
+                    description1: '洛杉矶布鲁克树屋是一个重新构想洛杉矶中心现代生活的当代住宅项目。设计强调简洁的线条、自然光线和室内外无缝连接，创造出既精致又舒适的生活环境。',
+                    description2: '建筑响应场地独特的地形和气候，融入可持续特征和被动设计策略。大型窗户和滑动玻璃门框景周围景观，同时促进自然通风并减少能源消耗。',
+                    description3: '室内空间经过精心布置，以最大化功能性和流动性，采用开放式平面布局，在保持私密休息区的同时鼓励社交互动。高品质材料和细致的细节处理体现了对工艺和耐久性的承诺。'
+                },
+                'zh-TW': {
+                    // Navigation
+                    nav_home: '首頁',
+                    nav_about: '關於',
+                    nav_contact: '聯絡',
+                    nav_map: '地圖',
+                    nav_work: '作品',
+                    nav_instagram: 'INS',
+                    nav_linkedin: '領英',
+                    // Project content
+                    title: '洛杉磯布魯克樹屋',
+                    location: '地點',
+                    locationContent: '洛杉磯，加利福尼亞州，美國',
+                    program: '項目類型',
+                    programContent: '住宅',
+                    year: '年份',
+                    yearContent: '2023',
+                    team: '團隊',
+                    teamContent: '江顯峰',
+                    info: '信息',
+                    infoContent: '現代獨立住宅',
+                    description1: '洛杉磯布魯克樹屋是一個重新構想洛杉磯中心現代生活的當代住宅項目。設計強調簡潔的線條、自然光線和室內外無縫連接，創造出既精緻又舒適的生活環境。',
+                    description2: '建築響應場地獨特的地形和氣候，融入可持續特徵和被動設計策略。大型窗戶和滑動玻璃門框景周圍景觀，同時促進自然通風並減少能源消耗。',
+                    description3: '室內空間經過精心布置，以最大化功能性和流動性，採用開放式平面布局，在保持私密休息區的同時鼓勵社交互動。高品質材料和細緻的細節處理體現了對工藝和耐久性的承諾。'
+                }
+            };
+
+            // Get all elements that need translation
+            const translatableElements = document.querySelectorAll('[data-translate]');
+            const languageButtons = document.querySelectorAll('.language-btn');
+            const languageSelect = document.getElementById('language-select');
+
+            // Function to update content based on selected language
+            function updateContent(language) {
+                translatableElements.forEach(element => {
+                    const key = element.getAttribute('data-translate');
+                    if (translations[language] && translations[language][key]) {
+                        if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                            element.placeholder = translations[language][key];
+                        } else {
+                            element.textContent = translations[language][key];
+                        }
+                    }
+                });
+
+                // Update language buttons
+                languageButtons.forEach(button => {
+                    button.classList.remove('active');
+                    if (button.getAttribute('data-lang') === language) {
+                        button.classList.add('active');
+                    }
+                });
+
+                // Update select element
+                languageSelect.value = language;
+            }
+
+            // Add click event listeners to language buttons
+            languageButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const language = button.getAttribute('data-lang');
+                    updateContent(language);
+                });
+            });
+
+            // Add change event listener to language select
+            languageSelect.addEventListener('change', (e) => {
+                updateContent(e.target.value);
+            });
+
+            // Initialize with English
+            updateContent('en');
+
+            // Photo album functionality
+            const modal = document.querySelector('.modal');
+            const modalImage = document.querySelector('.modal-image');
+            const closeButton = document.querySelector('.close-modal');
+            const prevButton = document.querySelector('.prev-btn');
+            const nextButton = document.querySelector('.next-btn');
+            const albumImages = document.querySelectorAll('.photo-album img');
+            let currentImageIndex = 0;
+
+            function openModal(index) {
+                currentImageIndex = index;
+                const imageSrc = albumImages[index].src;
+                modalImage.src = imageSrc;
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+
+            function showNextImage() {
+                currentImageIndex = (currentImageIndex + 1) % albumImages.length;
+                modalImage.src = albumImages[currentImageIndex].src;
+            }
+
+            function showPrevImage() {
+                currentImageIndex = (currentImageIndex - 1 + albumImages.length) % albumImages.length;
+                modalImage.src = albumImages[currentImageIndex].src;
+            }
+
+            albumImages.forEach((img, index) => {
+                img.addEventListener('click', () => openModal(index));
+            });
+
+            closeButton.addEventListener('click', closeModal);
+            nextButton.addEventListener('click', showNextImage);
+            prevButton.addEventListener('click', showPrevImage);
+
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!modal.style.display || modal.style.display === 'none') return;
+                
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowRight') showNextImage();
+                if (e.key === 'ArrowLeft') showPrevImage();
+            });
+        });
+    </script>
+</body>
+</html> 

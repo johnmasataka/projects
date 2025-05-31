@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endo at the Rotunda - John's Work</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header and Navigation */
+        header {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .language-selector select {
+            padding: 8px 30px 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 14px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .language-selector select:focus {
+            outline: none;
+            border-color: #333;
+        }
+
+        /* Project-specific styles */
+        main {
+            margin-top: 0;
+            padding: 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 65vh;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            margin-top: 60px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            padding: 2rem;
+            max-width: 50%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                max-width: 90%;
+            }
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: #000;
+            padding: 0;
+            width: 100%;
+            text-align: left;
+        }
+
+        .language-options {
+            display: flex;
+            gap: 0.1rem;
+            margin-bottom: 2rem;
+            padding: 0;
+            width: 100%;
+        }
+
+        .language-btn {
+            padding: 0.5rem 0;
+            margin-right: 2rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            text-align: left;
+        }
+
+        .language-btn.active {
+            opacity: 1;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .project-details {
+            margin-bottom: 2rem;
+            padding: 0;
+        }
+
+        .project-details p {
+            margin: 0.5rem 0;
+            padding: 0;
+        }
+
+        .project-description {
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .project-description p {
+            margin-bottom: 0.75rem;
+        }
+
+        .photo-album {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 0.1rem;
+            padding: 2rem 0;
+        }
+
+        .photo-album img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border-radius: 4px;
+        }
+
+        .photo-album img:hover {
+            transform: scale(1.02);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-image {
+            max-width: 85%;
+            max-height: 85vh;
+            object-fit: contain;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            pointer-events: none;
+        }
+
+        .modal-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            color: white;
+            font-size: 2rem;
+            border-radius: 50%;
+            transition: background-color 0.3s, transform 0.3s;
+            pointer-events: auto;
+        }
+
+        .modal-nav button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            transition: transform 0.3s;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.1);
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html" data-translate="nav_home">Home</a></li>
+                <li><a href="../about.html" data-translate="nav_about">About</a></li>
+                <li><a href="../contact.html" data-translate="nav_contact">Contact</a></li>
+                <li><a href="../map.html" data-translate="nav_map">Map</a></li>
+                <li><a href="../work.html" data-translate="nav_work">Work</a></li>
+                <li><a href="https://www.instagram.com/jjjhiker/" target="_blank" data-translate="nav_instagram">Instagram</a></li>
+                <li><a href="https://www.linkedin.com/in/johnmasataka-xianfeng-jiang/" target="_blank" data-translate="nav_linkedin">LinkedIn</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en" data-lang="en">English</option>
+                <option value="ja" data-lang="ja">日本語</option>
+                <option value="zh-CN" data-lang="zh-CN">简体中文</option>
+                <option value="zh-TW" data-lang="zh-TW">繁體中文</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-image">
+            <img src="../images/endo.jpg" alt="Endo at the Rotunda Hero Image">
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="project-title" data-translate="title">Endo at the Rotunda</h1>
+            
+            <div class="language-options">
+                <button class="language-btn active" data-lang="en">English</button>
+                <button class="language-btn" data-lang="ja">日本語</button>
+                <button class="language-btn" data-lang="zh-CN">简体中文</button>
+                <button class="language-btn" data-lang="zh-TW">繁體中文</button>
+            </div>
+
+            <div class="project-details">
+                <p><strong data-translate="location">Location</strong>: <span data-translate="locationContent">London, United Kingdom</span></p>
+                <p><strong data-translate="program">Program</strong>: <span data-translate="programContent">Fine Dining Restaurant</span></p>
+                <p><strong data-translate="year">Year</strong>: <span data-translate="yearContent">2023</span></p>
+                <p><strong data-translate="team">Team</strong>: <span data-translate="teamContent">Kengo Kuma and Associates</span></p>
+                <p><strong data-translate="info">Info</strong>: <span data-translate="infoContent">Interior Design, 250 sqm</span></p>
+            </div>
+
+            <div class="project-description">
+                <p data-translate="description1">Endo at the Rotunda is a high-end Japanese restaurant located in the iconic BBC Television Centre in London. The interior design draws inspiration from traditional Japanese aesthetics while incorporating contemporary elements that complement the building's modernist architecture.</p>
+                <p data-translate="description2">The space features a dramatic curved counter crafted from hinoki wood, creating an intimate dining experience where guests can observe the master chef's precise techniques. Custom lighting fixtures and carefully selected materials create a serene atmosphere that enhances the culinary journey.</p>
+            </div>
+        </div>
+
+        <div class="photo-album">
+            <img src="../images/endo.jpg" alt="Endo at the Rotunda Interior 1">
+            <img src="../images/endo.jpg" alt="Endo at the Rotunda Interior 2">
+            <img src="../images/endo.jpg" alt="Endo at the Rotunda Interior 3">
+            <img src="../images/endo.jpg" alt="Endo at the Rotunda Interior 4">
+            <img src="../images/endo.jpg" alt="Endo at the Rotunda Interior 5">
+            <img src="../images/endo.jpg" alt="Endo at the Rotunda Interior 6">
+        </div>
+
+        <div class="modal">
+            <button class="close-modal">×</button>
+            <div class="modal-content">
+                <img class="modal-image" src="" alt="Modal Image">
+                <div class="modal-nav">
+                    <button class="prev-btn">←</button>
+                    <button class="next-btn">→</button>
+                </div>
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © - All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Prevent right-click on the entire page
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Prevent drag and drop of images
+        document.addEventListener('dragstart', (e) => e.preventDefault());
+
+        // Language content including navigation translations
+        const translations = {
+            'en': {
+                // Navigation
+                nav_home: 'Home',
+                nav_about: 'About',
+                nav_contact: 'Contact',
+                nav_map: 'Map',
+                nav_work: 'Work',
+                nav_instagram: 'Instagram',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: 'Endo at the Rotunda',
+                location: 'Location',
+                locationContent: 'London, United Kingdom',
+                program: 'Program',
+                programContent: 'Fine Dining Restaurant',
+                year: 'Year',
+                yearContent: '2023',
+                team: 'Team',
+                teamContent: 'Kengo Kuma and Associates',
+                info: 'Info',
+                infoContent: 'Interior Design, 250 sqm',
+                description1: 'Endo at the Rotunda is a high-end Japanese restaurant located in the iconic BBC Television Centre in London. The interior design draws inspiration from traditional Japanese aesthetics while incorporating contemporary elements that complement the building\'s modernist architecture.',
+                description2: 'The space features a dramatic curved counter crafted from hinoki wood, creating an intimate dining experience where guests can observe the master chef\'s precise techniques. Custom lighting fixtures and carefully selected materials create a serene atmosphere that enhances the culinary journey.'
+            },
+            'ja': {
+                // Navigation
+                nav_home: 'ホーム',
+                nav_about: '概要',
+                nav_contact: 'お問い合わせ',
+                nav_map: '地図',
+                nav_work: '作品',
+                nav_instagram: 'インスタグラム',
+                nav_linkedin: 'リンクトイン',
+                // Project content
+                title: 'エンドー・アット・ザ・ロトンダ',
+                location: '場所',
+                locationContent: 'イギリス、ロンドン',
+                program: '用途',
+                programContent: '高級日本料理店',
+                year: '年',
+                yearContent: '2023年',
+                team: 'チーム',
+                teamContent: '隈研吾建築都市設計事務所',
+                info: '情報',
+                infoContent: 'インテリアデザイン、250平方メートル',
+                description1: 'エンドー・アット・ザ・ロトンダは、ロンドンの象徴的なBBCテレビセンター内に位置する高級日本料理店です。インテリアデザインは、伝統的な日本の美学から着想を得ながら、建物のモダニズム建築を補完する現代的な要素を取り入れています。',
+                description2: '檜材で作られた曲線的なカウンターが特徴的な空間では、お客様が料理人の正確な技を間近で観察できる親密な食事体験を提供します。カスタムメイドの照明器具と厳選された素材が、料理の旅をより一層引き立てる静謐な雰囲気を作り出しています。'
+            },
+            'zh-CN': {
+                // Navigation
+                nav_home: '首页',
+                nav_about: '关于',
+                nav_contact: '联系',
+                nav_map: '地图',
+                nav_work: '作品',
+                nav_instagram: 'Instagram',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: 'Endo圆形餐厅',
+                location: '位置',
+                locationContent: '英国伦敦',
+                program: '项目类型',
+                programContent: '高级日料餐厅',
+                year: '年份',
+                yearContent: '2023年',
+                team: '团队',
+                teamContent: '隈研吾建筑都市设计事务所',
+                info: '信息',
+                infoContent: '室内设计，250平方米',
+                description1: 'Endo圆形餐厅位于伦敦标志性的BBC电视中心内。室内设计汲取传统日本美学灵感，同时融入现代元素，与建筑的现代主义风格相得益彰。',
+                description2: '空间特色是由檜木打造的优美弧形吧台，为顾客创造亲密的用餐体验，使其能近距离观赏大师级厨师的精湛技艺。定制的照明装置和精心挑选的材料营造出宁静的氛围，提升了整体的美食体验。'
+            },
+            'zh-TW': {
+                // Navigation
+                nav_home: '首頁',
+                nav_about: '關於',
+                nav_contact: '聯繫',
+                nav_map: '地圖',
+                nav_work: '作品',
+                nav_instagram: 'Instagram',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: 'Endo圓形餐廳',
+                location: '位置',
+                locationContent: '英國倫敦',
+                program: '項目類型',
+                programContent: '高級日料餐廳',
+                year: '年份',
+                yearContent: '2023年',
+                team: '團隊',
+                teamContent: '隈研吾建築都市設計事務所',
+                info: '信息',
+                infoContent: '室內設計，250平方米',
+                description1: 'Endo圓形餐廳位於倫敦標誌性的BBC電視中心內。室內設計汲取傳統日本美學靈感，同時融入現代元素，與建築的現代主義風格相得益彰。',
+                description2: '空間特色是由檜木打造的優美弧形吧台，為顧客創造親密的用餐體驗，使其能近距離觀賞大師級廚師的精湛技藝。定制的照明裝置和精心挑選的材料營造出寧靜的氛圍，提升了整體的美食體驗。'
+            }
+        };
+
+        // Get all elements that need translation
+        const translatableElements = document.querySelectorAll('[data-translate]');
+        const languageButtons = document.querySelectorAll('.language-btn');
+        const languageSelect = document.getElementById('language-select');
+
+        // Function to update content based on selected language
+        function updateContent(language) {
+            translatableElements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[language] && translations[language][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[language][key];
+                    } else {
+                        element.textContent = translations[language][key];
+                    }
+                }
+            });
+
+            // Update language buttons
+            languageButtons.forEach(button => {
+                button.classList.remove('active');
+                if (button.getAttribute('data-lang') === language) {
+                    button.classList.add('active');
+                }
+            });
+
+            // Update select element
+            languageSelect.value = language;
+        }
+
+        // Add click event listeners to language buttons
+        languageButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const language = button.getAttribute('data-lang');
+                updateContent(language);
+            });
+        });
+
+        // Add change event listener to language select
+        languageSelect.addEventListener('change', (e) => {
+            updateContent(e.target.value);
+        });
+
+        // Initialize with English
+        updateContent('en');
+
+        // Photo album functionality
+        const modal = document.querySelector('.modal');
+        const modalImage = document.querySelector('.modal-image');
+        const closeButton = document.querySelector('.close-modal');
+        const prevButton = document.querySelector('.prev-btn');
+        const nextButton = document.querySelector('.next-btn');
+        const albumImages = document.querySelectorAll('.photo-album img');
+        let currentImageIndex = 0;
+
+        function openModal(index) {
+            currentImageIndex = index;
+            const imageSrc = albumImages[index].src;
+            modalImage.src = imageSrc;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % albumImages.length;
+            modalImage.src = albumImages[currentImageIndex].src;
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + albumImages.length) % albumImages.length;
+            modalImage.src = albumImages[currentImageIndex].src;
+        }
+
+        albumImages.forEach((img, index) => {
+            img.addEventListener('click', () => openModal(index));
+        });
+
+        closeButton.addEventListener('click', closeModal);
+        nextButton.addEventListener('click', showNextImage);
+        prevButton.addEventListener('click', showPrevImage);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!modal.style.display || modal.style.display === 'none') return;
+            
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowRight') showNextImage();
+            if (e.key === 'ArrowLeft') showPrevImage();
+        });
+    </script>
+</body>
+</html> 

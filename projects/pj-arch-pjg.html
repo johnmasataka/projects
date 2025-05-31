@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portland Education Center - John's Work</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header and Navigation */
+        header {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .language-selector select {
+            padding: 8px 30px 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 14px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .language-selector select:focus {
+            outline: none;
+            border-color: #333;
+        }
+
+        /* Project-specific styles */
+        main {
+            margin-top: 0;
+            padding: 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 65vh;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            margin-top: 60px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            padding: 2rem;
+            max-width: 50%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                max-width: 90%;
+            }
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: #000;
+            padding: 0;
+            width: 100%;
+            text-align: left;
+        }
+
+        .language-options {
+            display: flex;
+            gap: 0.1rem;
+            margin-bottom: 2rem;
+            padding: 0;
+            width: 100%;
+        }
+
+        .language-btn {
+            padding: 0.5rem 0;
+            margin-right: 2rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            text-align: left;
+        }
+
+        .language-btn.active {
+            opacity: 1;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .project-details {
+            margin-bottom: 2rem;
+            padding: 0;
+        }
+
+        .project-details p {
+            margin: 0.5rem 0;
+            padding: 0;
+        }
+
+        .project-description {
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .project-description p {
+            margin-bottom: 0.75rem;
+        }
+
+        .photo-album {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 0.1rem;
+            padding: 2rem 0;
+        }
+
+        .photo-album img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border-radius: 4px;
+        }
+
+        .photo-album img:hover {
+            transform: scale(1.02);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-image {
+            max-width: 85%;
+            max-height: 85vh;
+            object-fit: contain;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            pointer-events: none;
+        }
+
+        .modal-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            color: white;
+            font-size: 2rem;
+            border-radius: 50%;
+            transition: background-color 0.3s, transform 0.3s;
+            pointer-events: auto;
+        }
+
+        .modal-nav button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            transition: transform 0.3s;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.1);
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html" data-translate="nav_home">Home</a></li>
+                <li><a href="../about.html" data-translate="nav_about">About</a></li>
+                <li><a href="../contact.html" data-translate="nav_contact">Contact</a></li>
+                <li><a href="../map.html" data-translate="nav_map">Map</a></li>
+                <li><a href="../work.html" data-translate="nav_work">Work</a></li>
+                <li><a href="https://www.instagram.com/jjjhiker/" target="_blank" data-translate="nav_instagram">Instagram</a></li>
+                <li><a href="https://www.linkedin.com/in/johnmasataka-xianfeng-jiang/" target="_blank" data-translate="nav_linkedin">LinkedIn</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en" data-lang="en">English</option>
+                <option value="ja" data-lang="ja">日本語</option>
+                <option value="zh-CN" data-lang="zh-CN">简体中文</option>
+                <option value="zh-TW" data-lang="zh-TW">繁體中文</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-image">
+            <img src="../images/pjg.jpg" alt="Portland Education Center Hero Image">
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="project-title" data-translate="title">Portland Education Center</h1>
+            
+            <div class="language-options">
+                <button class="language-btn active" data-lang="en">English</button>
+                <button class="language-btn" data-lang="ja">日本語</button>
+                <button class="language-btn" data-lang="zh-CN">简体中文</button>
+                <button class="language-btn" data-lang="zh-TW">繁體中文</button>
+            </div>
+
+            <div class="project-details">
+                <p><strong data-translate="location">Location</strong>: <span data-translate="locationContent">Portland, Oregon, USA</span></p>
+                <p><strong data-translate="program">Program</strong>: <span data-translate="programContent">Cultural and Educational Facility</span></p>
+                <p><strong data-translate="year">Year</strong>: <span data-translate="yearContent">2023</span></p>
+                <p><strong data-translate="team">Team</strong>: <span data-translate="teamContent">Kengo Kuma and Associates</span></p>
+                <p><strong data-translate="info">Info</strong>: <span data-translate="infoContent">New Construction, 1,500 sqm</span></p>
+            </div>
+
+            <div class="project-description">
+                <p data-translate="description1">The Portland Education Center is a cultural and educational facility designed to showcase Japanese craftsmanship and foster cultural exchange between Japan and the Pacific Northwest. The building's design incorporates traditional Japanese woodworking techniques with contemporary architectural elements.</p>
+                <p data-translate="description2">The facility features exhibition spaces, workshops, classrooms, and a demonstration area where master craftsmen can share their skills with visitors. The use of local timber and Japanese joinery techniques creates a harmonious blend of cultures while promoting sustainable building practices.</p>
+            </div>
+        </div>
+
+        <div class="photo-album">
+            <img src="../images/pjg.jpg" alt="Portland Education Center Interior 1">
+            <img src="../images/pjg.jpg" alt="Portland Education Center Interior 2">
+            <img src="../images/pjg.jpg" alt="Portland Education Center Interior 3">
+            <img src="../images/pjg.jpg" alt="Portland Education Center Interior 4">
+            <img src="../images/pjg.jpg" alt="Portland Education Center Interior 5">
+            <img src="../images/pjg.jpg" alt="Portland Education Center Interior 6">
+        </div>
+
+        <div class="modal">
+            <button class="close-modal">×</button>
+            <div class="modal-content">
+                <img class="modal-image" src="" alt="Modal Image">
+                <div class="modal-nav">
+                    <button class="prev-btn">←</button>
+                    <button class="next-btn">→</button>
+                </div>
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © - All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Prevent right-click on the entire page
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Prevent drag and drop of images
+        document.addEventListener('dragstart', (e) => e.preventDefault());
+
+        // Language content including navigation translations
+        const translations = {
+            'en': {
+                // Navigation
+                nav_home: 'Home',
+                nav_about: 'About',
+                nav_contact: 'Contact',
+                nav_map: 'Map',
+                nav_work: 'Work',
+                nav_instagram: 'Instagram',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: 'Portland Education Center',
+                location: 'Location',
+                locationContent: 'Portland, Oregon, USA',
+                program: 'Program',
+                programContent: 'Cultural and Educational Facility',
+                year: 'Year',
+                yearContent: '2023',
+                team: 'Team',
+                teamContent: 'Kengo Kuma and Associates',
+                info: 'Info',
+                infoContent: 'New Construction, 1,500 sqm',
+                description1: 'The Portland Education Center is a cultural and educational facility designed to showcase Japanese craftsmanship and foster cultural exchange between Japan and the Pacific Northwest. The building\'s design incorporates traditional Japanese woodworking techniques with contemporary architectural elements.',
+                description2: 'The facility features exhibition spaces, workshops, classrooms, and a demonstration area where master craftsmen can share their skills with visitors. The use of local timber and Japanese joinery techniques creates a harmonious blend of cultures while promoting sustainable building practices.'
+            },
+            'ja': {
+                // Navigation
+                nav_home: 'ホーム',
+                nav_about: '概要',
+                nav_contact: 'お問い合わせ',
+                nav_map: '地図',
+                nav_work: '作品',
+                nav_instagram: 'インスタグラム',
+                nav_linkedin: 'リンクトイン',
+                // Project content
+                title: 'ポートランド教育センター',
+                location: '場所',
+                locationContent: 'アメリカ合衆国、オレゴン州ポートランド',
+                program: '用途',
+                programContent: '文化・教育施設',
+                year: '年',
+                yearContent: '2023年',
+                team: 'チーム',
+                teamContent: '隈研吾建築都市設計事務所',
+                info: '情報',
+                infoContent: '新築、1,500平方メートル',
+                description1: 'ポートランド教育センターは、日本の職人技を紹介し、日本と太平洋岸北西部の文化交流を促進するために設計された文化・教育施設です。建物のデザインは、伝統的な日本の木工技術と現代的な建築要素を組み合わせています。',
+                description2: '施設には、展示スペース、ワークショップ、教室、そして職人が来場者とスキルを共有できる実演エリアが設けられています。地元の木材と日本の継手技法を使用することで、文化の調和を図りながら持続可能な建築実践を推進しています。'
+            },
+            'zh-CN': {
+                // Navigation
+                nav_home: '首页',
+                nav_about: '关于',
+                nav_contact: '联系',
+                nav_map: '地图',
+                nav_work: '作品',
+                nav_instagram: 'Instagram',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: '波特兰教育中心',
+                location: '位置',
+                locationContent: '美国俄勒冈州波特兰',
+                program: '项目类型',
+                programContent: '文化教育设施',
+                year: '年份',
+                yearContent: '2023年',
+                team: '团队',
+                teamContent: '隈研吾建筑都市设计事务所',
+                info: '信息',
+                infoContent: '新建，1,500平方米',
+                description1: '波特兰教育中心是一座旨在展示日本工艺并促进日本与太平洋西北部文化交流的文化教育设施。建筑设计将传统日本木工技术与现代建筑元素相结合。',
+                description2: '该设施包括展览空间、工作坊、教室和示范区，能工巧匠可以在此与访客分享他们的技艺。通过使用当地木材和日本榫卯技术，创造了文化的和谐融合，同时推广可持续建筑实践。'
+            },
+            'zh-TW': {
+                // Navigation
+                nav_home: '首頁',
+                nav_about: '關於',
+                nav_contact: '聯繫',
+                nav_map: '地圖',
+                nav_work: '作品',
+                nav_instagram: 'Instagram',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: '波特蘭教育中心',
+                location: '位置',
+                locationContent: '美國俄勒岡州波特蘭',
+                program: '項目類型',
+                programContent: '文化教育設施',
+                year: '年份',
+                yearContent: '2023年',
+                team: '團隊',
+                teamContent: '隈研吾建築都市設計事務所',
+                info: '信息',
+                infoContent: '新建，1,500平方米',
+                description1: '波特蘭教育中心是一座旨在展示日本工藝並促進日本與太平洋西北部文化交流的文化教育設施。建築設計將傳統日本木工技術與現代建築元素相結合。',
+                description2: '該設施包括展覽空間、工作坊、教室和示範區，能工巧匠可以在此與訪客分享他們的技藝。通過使用當地木材和日本榫卯技術，創造了文化的和諧融合，同時推廣可持續建築實踐。'
+            }
+        };
+
+        // Get all elements that need translation
+        const translatableElements = document.querySelectorAll('[data-translate]');
+        const languageButtons = document.querySelectorAll('.language-btn');
+        const languageSelect = document.getElementById('language-select');
+
+        // Function to update content based on selected language
+        function updateContent(language) {
+            translatableElements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[language] && translations[language][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[language][key];
+                    } else {
+                        element.textContent = translations[language][key];
+                    }
+                }
+            });
+
+            // Update language buttons
+            languageButtons.forEach(button => {
+                button.classList.remove('active');
+                if (button.getAttribute('data-lang') === language) {
+                    button.classList.add('active');
+                }
+            });
+
+            // Update select element
+            languageSelect.value = language;
+        }
+
+        // Add click event listeners to language buttons
+        languageButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const language = button.getAttribute('data-lang');
+                updateContent(language);
+            });
+        });
+
+        // Add change event listener to language select
+        languageSelect.addEventListener('change', (e) => {
+            updateContent(e.target.value);
+        });
+
+        // Initialize with English
+        updateContent('en');
+
+        // Photo album functionality
+        const modal = document.querySelector('.modal');
+        const modalImage = document.querySelector('.modal-image');
+        const closeButton = document.querySelector('.close-modal');
+        const prevButton = document.querySelector('.prev-btn');
+        const nextButton = document.querySelector('.next-btn');
+        const albumImages = document.querySelectorAll('.photo-album img');
+        let currentImageIndex = 0;
+
+        function openModal(index) {
+            currentImageIndex = index;
+            const imageSrc = albumImages[index].src;
+            modalImage.src = imageSrc;
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % albumImages.length;
+            modalImage.src = albumImages[currentImageIndex].src;
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + albumImages.length) % albumImages.length;
+            modalImage.src = albumImages[currentImageIndex].src;
+        }
+
+        albumImages.forEach((img, index) => {
+            img.addEventListener('click', () => openModal(index));
+        });
+
+        closeButton.addEventListener('click', closeModal);
+        nextButton.addEventListener('click', showNextImage);
+        prevButton.addEventListener('click', showPrevImage);
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!modal.style.display || modal.style.display === 'none') return;
+            
+            if (e.key === 'Escape') closeModal();
+            if (e.key === 'ArrowRight') showNextImage();
+            if (e.key === 'ArrowLeft') showPrevImage();
+        });
+    </script>
+</body>
+</html> 

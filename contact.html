@@ -39,10 +39,8 @@
         <section class="contact">
             <h1>Contact</h1>
             <div class="contact-content">
-                <p>For inquiries, please contact me at:</p>
-                <p>Email: <a href="mailto:xj2329@columbia.edu">xj2329@columbia.edu</a></p>
-                <!-- <p>Phone: +81-3-XXXX-XXXX</p> -->
-                <!-- <p>Address: Tokyo, Japan</p> -->
+                <p data-translate="inquiry">For inquiries, please contact me at:</p>
+                <p>Email: <a href="mailto:johnmasataka@outlook.com">johnmasataka@outlook.com</a></p>
             </div>
         </section>
     </main>
@@ -50,6 +48,54 @@
     <footer>
         <p>Copyright © - All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // Language content for contact page
+        const contactTranslations = {
+            'en': {
+                'inquiry': 'For inquiries, please contact me at:'
+            },
+            'es': {
+                'inquiry': 'Para consultas, por favor contácteme en:'
+            },
+            'ja': {
+                'inquiry': 'お問い合わせは以下までご連絡ください：'
+            },
+            'ko': {
+                'inquiry': '문의사항이 있으시면 아래로 연락 주시기 바랍니다:'
+            },
+            'zh-CN': {
+                'inquiry': '如需咨询，请通过以下方式联系我：'
+            },
+            'zh-TW': {
+                'inquiry': '如需諮詢，請通過以下方式聯繫我：'
+            }
+        };
+
+        // Function to update contact content based on selected language
+        function updateContactContent(lang) {
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (contactTranslations[lang] && contactTranslations[lang][key]) {
+                    element.textContent = contactTranslations[lang][key];
+                }
+            });
+        }
+
+        // Add change event listener to language selector
+        const languageSelect = document.getElementById('language-select');
+        if (languageSelect) {
+            languageSelect.addEventListener('change', (e) => {
+                const lang = e.target.value;
+                updateContactContent(lang);
+            });
+        }
+
+        // Initialize with English as default language
+        document.addEventListener('DOMContentLoaded', () => {
+            updateContactContent('en');
+        });
+    </script>
     <script src="script.js"></script>
 </body>
 </html> 
