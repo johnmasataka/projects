@@ -2,7 +2,7 @@
 const languageContent = {
     en: {
         // Navigation
-        top: "Top",
+        home: "Home",
         // news: "News",
         work: "Work",
         about: "About",
@@ -14,24 +14,24 @@ const languageContent = {
         concept: "John Xianfeng Jiang's work",
         // conceptDetail: "To maximize the potential of a place, simply providing a 'box' is not enough. We propose 'content' that makes each building have its own story. Centered around the 'SHARE' project, we will develop our business with a range of sizes and programs all over Japan.",
         profile: "PROFILE",
-        project: "PROJECTS",
+        project: "SELECTED PROJECTS",
         // shareProject: "Archtalk",
         // shareProjectDetail: "The project started with 'SHAREyaraicho' in Yaraicho, a residential area in Kagurazaka. Our motivation is revitalizing the invisible community in Tokyo by making a series of share houses. In our SHARE projects, every share house has very unique common space besides living room, shower room, toilet, laundry and working space.",
         // About section
         aboutTitle: "John Xianfeng Jiang",
-        aboutContent: "John, also known as Masataka, is a New York / Tokyo-based architect, AI researcher, and project manager. He has over eight years of professional experience at <a href=\"https://kkaa.co.jp/en/\" target=\"_blank\" style=\"color: inherit;\">Kengo Kuma & Associates (KKAA)</a>, where he has led teams on a wide range of projects, including luxury towers, resorts, private residences, and high-end furniture. His unique career bridges the confluence of management, technology, and design. He also worked for the <a href=\"https://c4sr.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">Center for Spatial Research (CSR)</a> at Columbia University, and is the member of the <a href=\"https://www.aij.or.jp/aijhome.htm\" target=\"_blank\" style=\"color: inherit;\">Architectural Institute of Japan (AIJ)</a>. John holds master's degree in computation in <a href=\"https://www.arch.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">Columbia University GSAPP</a> and architecture in <a href=\"https://www.global.hokudai.ac.jp/\" target=\"_blank\" style=\"color: inherit;\">Hokkaido University</a>.",
+        aboutContent: "John (君安), also known as Masataka (賢峰), is a New York / Tokyo-based architect, AI researcher, and project manager. He has over eight years of professional experience at <a href=\"https://kkaa.co.jp/en/\" target=\"_blank\" style=\"color: inherit;\">Kengo Kuma & Associates (KKAA)</a>, where he has led teams on a wide range of projects, including luxury towers, resorts, private residences, and high-end furniture. His unique career bridges the confluence of management, technology, and design. He also worked for the <a href=\"https://c4sr.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">Center for Spatial Research (CSR)</a> at Columbia University, and is the member of the <a href=\"https://www.aij.or.jp/aijhome.htm\" target=\"_blank\" style=\"color: inherit;\">Architectural Institute of Japan (AIJ)</a>. John holds master's degree in computation in <a href=\"https://www.arch.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">Columbia University GSAPP</a> and architecture in <a href=\"https://www.global.hokudai.ac.jp/\" target=\"_blank\" style=\"color: inherit;\">Hokkaido University</a>.",
         // Footer
         copyright: "Copyright © - All Rights Reserved."
     },
     ja: {
         // Navigation
-        top: "トップ",
+        home: "ホーム",
         // news: "ニュース",
         work: "プロジェクト",
         about: "概要",
         contact: "お問い合わせ",
         map: "地図",
-        instagram: "インスタグラム",
+        instagram: "Instagram",
         linkedin: "LinkedIn",
         // Main content
         concept: "ジョン・賢峰・蔣\nの作品",
@@ -49,7 +49,7 @@ const languageContent = {
     // Spanish language content
     es: {
         // Navigation
-        top: "Inicio",
+        home: "Inicio",
         // news: "Noticias",
         work: "Proyectos",
         about: "Acerca de",
@@ -73,7 +73,7 @@ const languageContent = {
     // Korean language content
     ko: {
         // Navigation
-        top: "상단",
+        home: "홈",
         // news: "뉴스",
         work: "프로젝트",
         about: "소개",
@@ -97,19 +97,19 @@ const languageContent = {
     // Simplified Chinese language content
     "zh-CN": {
         // Navigation
-        top: "首页",
+        home: "首页",
         // news: "新闻",
         work: "项目",
         about: "关于",
         contact: "联系",
         map: "地图",
-        instagram: "Instagram",
-        linkedin: "LinkedIn",
+        instagram: "INS",
+        linkedin: "领英",
         // Main content
         concept: "蒋贤峰的作品",
         // conceptDetail: "要最大化一个地方的潜力，仅仅提供一个'盒子'是不够的。我们提出'内容'，使每个建筑都有自己的故事。以'SHARE'项目为中心，我们将在日本各地开展各种规模和项目的业务。",
         profile: "简介",
-        project: "项目<br>(仅限哥伦比亚大学期间)",
+        project: "精选作品",
         // shareProject: "什么是SHARE项目",
         // shareProjectDetail: "该项目始于神乐坂住宅区矢来町的'SHAREyaraicho'。我们的动机是通过创建一系列共享住宅来振兴东京看不见的社区。在我们的SHARE项目中，每个共享住宅除了客厅、淋浴间、厕所、洗衣房和工作空间外，还有非常独特的公共空间。",
         // About section
@@ -121,19 +121,19 @@ const languageContent = {
     // Traditional Chinese language content
     "zh-TW": {
         // Navigation
-        top: "首頁",
+        home: "首頁",
         // news: "新聞",
         work: "作品",
         about: "關於",
         contact: "聯繫",
         map: "地圖",
-        instagram: "Instagram",
+        instagram: "IG",
         linkedin: "LinkedIn",
         // Main content
         concept: "蔣賢峰的作品",
         // conceptDetail: "要最大化一個地方的潛力，僅僅提供一個'盒子'是不夠的。我們提出'內容'，使每個建築都有自己的故事。以'SHARE'項目為中心，我們將在日本各地開展各種規模和項目的業務。",
         profile: "簡介",
-        project: "作品",
+        project: "精選作品",
         // shareProject: "什麼是SHARE項目",
         // shareProjectDetail: "該項目始於神樂坂住宅區矢來町的'SHAREyaraicho'。我們的動機是通過創建一系列共享住宅來振興東京看不見的社區。在我們的SHARE項目中，每個共享住宅除了客廳、淋浴間、廁所、洗衣房和工作空間外，還有非常獨特的公共空間。",
         // About section

@@ -353,12 +353,12 @@
         </div>
 
         <div class="photo-album">
-            <img src="../images/cinema.jpg" alt="Project Image 1">
-            <img src="../images/cinema.jpg" alt="Project Image 2">
-            <img src="../images/cinema.jpg" alt="Project Image 3">
-            <img src="../images/cinema.jpg" alt="Project Image 4">
-            <img src="../images/cinema.jpg" alt="Project Image 5">
-            <img src="../images/cinema.jpg" alt="Project Image 6">
+            <img src="./pj-images/pj-arch-PROJECT_NAME/PROJECT_NAME-1.jpg" alt="Project Image 1">
+            <img src="./pj-images/pj-arch-PROJECT_NAME/PROJECT_NAME-2.jpg" alt="Project Image 2">
+            <img src="./pj-images/pj-arch-PROJECT_NAME/PROJECT_NAME-3.jpg" alt="Project Image 3">
+            <img src="./pj-images/pj-arch-PROJECT_NAME/PROJECT_NAME-4.jpg" alt="Project Image 4">
+            <img src="./pj-images/pj-arch-PROJECT_NAME/PROJECT_NAME-5.jpg" alt="Project Image 5">
+            <img src="./pj-images/pj-arch-PROJECT_NAME/PROJECT_NAME-6.jpg" alt="Project Image 6">
         </div>
 
         <div class="modal">
@@ -419,11 +419,11 @@
                 // Navigation
                 nav_home: 'ホーム',
                 nav_about: '概要',
-                nav_contact: '連絡先',
-                nav_map: 'マップ',
-                nav_work: '作品',
-                nav_instagram: 'インスタグラム',
-                nav_linkedin: 'リンクトイン',
+                nav_contact: 'お問い合わせ',
+                nav_map: '地図',
+                nav_work: 'プロジェクト',
+                nav_instagram: 'Instagram',
+                nav_linkedin: 'LinkedIn',
                 // Project content
                 title: 'プロジェクト名',
                 award: '受賞',
@@ -432,8 +432,8 @@
                 publicationContent: '[出版内容]',
                 location: '場所',
                 locationContent: '[場所]',
-                program: 'プログラム',
-                programContent: '[プログラム内容]',
+                program: '用途',
+                programContent: '[用途内容]',
                 year: '年',
                 yearContent: '[年]',
                 team: 'チーム',
@@ -460,7 +460,7 @@
                 publicationContent: '[出版内容]',
                 location: '地点',
                 locationContent: '[地点内容]',
-                program: '项目类型',
+                program: '类型',
                 programContent: '[项目类型内容]',
                 year: '年份',
                 yearContent: '[年份内容]',
@@ -479,7 +479,7 @@
                 nav_map: '地圖',
                 nav_work: '作品',
                 nav_instagram: 'IG',
-                nav_linkedin: '領英',
+                nav_linkedin: 'LinkedIn',
                 // Project content
                 title: '專案名稱',
                 award: '獎項',
@@ -488,7 +488,7 @@
                 publicationContent: '[出版內容]',
                 location: '地點',
                 locationContent: '[地點內容]',
-                program: '項目類型',
+                program: '類型',
                 programContent: '[項目類型內容]',
                 year: '年份',
                 yearContent: '[年份內容]',
@@ -615,6 +615,42 @@
                 if (e.key === 'ArrowRight') showNextImage();
                 if (e.key === 'Escape') closeModal();
             }
+
+            // Prevent F12 key
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Prevent Ctrl+Shift+I (Chrome, Firefox, Safari)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Prevent Ctrl+Shift+J (Chrome, Firefox)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Prevent Ctrl+Shift+C (Chrome)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Prevent right-click context menu
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            return false;
+        });
+
+        // Prevent drag and drop of images
+        document.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+            return false;
         });
 
         // Smooth transition for modal image
