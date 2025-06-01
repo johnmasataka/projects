@@ -339,20 +339,44 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Hero Slideshow
+// Function to shuffle array
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Initialize slideshow
 function initSlideshow() {
-    const slides = document.querySelectorAll('.hero-slide');
+    const slideshow = document.getElementById('heroSlideshow');
+    if (!slideshow) return;
+
+    const slides = Array.from(slideshow.children);
     let currentSlide = 0;
-    const slideCount = slides.length;
+    
+    // Shuffle the slides array
+    shuffleArray(slides);
+    
+    // Reorder the slides in the DOM according to the shuffled array
+    slides.forEach((slide, index) => {
+        slide.classList.remove('active');
+        slideshow.appendChild(slide);
+    });
+    
+    // Show the first slide
+    slides[0].classList.add('active');
 
     function showSlide(index) {
-        slides.forEach(slide => slide.classList.remove('active'));
-        slides[index].classList.add('active');
+        slides[currentSlide].classList.remove('active');
+        currentSlide = index;
+        slides[currentSlide].classList.add('active');
     }
 
     function nextSlide() {
-        currentSlide = (currentSlide + 1) % slideCount;
-        showSlide(currentSlide);
+        const nextIndex = (currentSlide + 1) % slides.length;
+        showSlide(nextIndex);
     }
 
     // Change slide every 5 seconds
