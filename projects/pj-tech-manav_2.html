@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project - Manav</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header and Navigation */
+        header {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .language-selector select {
+            padding: 8px 30px 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 14px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .language-selector select:focus {
+            outline: none;
+            border-color: #333;
+        }
+
+        /* Project-specific styles */
+        main {
+            margin-top: 0;
+            padding: 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 65vh;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            margin-top: 60px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            padding: 2rem;
+            max-width: 50%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: #000;
+            padding: 0;
+            width: 100%;
+            text-align: left;
+        }
+
+        .project-details {
+            margin-bottom: 2rem;
+            padding: 0;
+        }
+
+        .project-details p {
+            margin: 0.5rem 0;
+            padding: 0;
+        }
+
+        .project-description {
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .project-description p {
+            margin-bottom: 1.5rem;
+        }
+
+        .project-description h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem 0;
+        }
+
+        .project-description ul {
+            margin-bottom: 1.5rem;
+            padding-left: 1.5rem;
+        }
+
+        .project-description li {
+            margin-bottom: 0.5rem;
+        }
+
+        .photo-album {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 0.1rem;
+            padding: 2rem 0;
+        }
+
+        .photo-album img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border-radius: 4px;
+        }
+
+        .photo-album img:hover {
+            transform: scale(1.02);
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                max-width: 90%;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="hero-image">
+            <img src="../images/manav.jpg" alt="Manav: Posture-Based Furniture Generation">
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="project-title" data-translate="title">Manav मानव</h1>
+
+            <div class="language-options">
+                <button class="language-btn active" data-lang="en">English</button>
+                <button class="language-btn" data-lang="ja">日本語</button>
+                <button class="language-btn" data-lang="zh-CN">简体中文</button>
+                <button class="language-btn" data-lang="zh-TW">繁體中文</button>
+            </div>
+
+            <div class="project-details">
+                <p><strong data-translate="location">Location:</strong> <span data-translate="locationContent">New York, United States</span></p>
+                <p><strong data-translate="program">Program:</strong> <span data-translate="programContent">Software Development</span></p>
+                <p><strong data-translate="year">Year:</strong> <span data-translate="yearContent">2024</span></p>
+                <p><strong data-translate="team">Team:</strong> <span data-translate="teamContent">John Xianfeng Jiang, Manas Bhatia, Hao Lee, Sebastian Schloesser</span></p>
+            </div>
+
+            <div class="project-description">
+                <h2 data-translate="whatIsManav">What is Manav?</h2>
+                <p data-translate="description1">Manav is an innovative Grasshopper plug-in specifically designed to generate ergonomic furniture based on human postures. This tool accommodates a wide spectrum of poses, ranging from everyday positions to extreme and unconventional ones, such as handstands or mid-cartwheel. By analyzing these diverse postures, Manav creates customized furniture tailored to the specific body configurations of users, thereby offering a harmonious blend of functionality and creativity in furniture design.</p>
+
+                <h2 data-translate="keyBenefits">Key Benefits</h2>
+                <ul>
+                    <li><strong data-translate="benefit1Title">Rapid Prototyping:</strong> <span data-translate="benefit1Content">Designers and manufacturers can swiftly prototype unique furniture solutions tailored to specific users or applications, significantly reducing traditional design process time.</span></li>
+                    <li><strong data-translate="benefit2Title">Customized and Adaptive Furniture:</strong> <span data-translate="benefit2Content">Generate fully customized furniture that accommodates a wide range of postures, ensuring unparalleled comfort and support.</span></li>
+                    <li><strong data-translate="benefit3Title">Inclusivity and Accessibility:</strong> <span data-translate="benefit3Content">Facilitates the design of more inclusive furniture options that cater to individuals with diverse physical needs or disabilities.</span></li>
+                </ul>
+
+                <h2 data-translate="whoIsItFor">Who Is It For?</h2>
+                <ul>
+                    <li><strong data-translate="audience1Title">Furniture Designers and Manufacturers:</strong> <span data-translate="audience1Content">Create customizable, ergonomic, or avant-garde furniture that adapts to unique user needs.</span></li>
+                    <li><strong data-translate="audience2Title">Workplace and Office Solutions:</strong> <span data-translate="audience2Content">Optimize workspaces for comfort and productivity, supporting diverse working styles and body types.</span></li>
+                    <li><strong data-translate="audience3Title">Healthcare and Rehabilitation:</strong> <span data-translate="audience3Content">Design customized supportive furniture for various postures and mobility challenges in healthcare settings.</span></li>
+                </ul>
+
+                <h2 data-translate="technicalComponents">Technical Components</h2>
+                <p data-translate="componentsIntro">Manav consists of three main parts:</p>
+                <ul>
+                    <li><strong data-translate="component1Title">Posture Rigging:</strong> <span data-translate="component1Content">Features both freeform dragging and parameterized approaches for intuitive mannequin manipulation.</span></li>
+                    <li><strong data-translate="component2Title">Furniture Generation:</strong> <span data-translate="component2Content">Includes assembly furniture, adaptive furniture, and soft-body furniture generation methods.</span></li>
+                    <li><strong data-translate="component3Title">Furniture Analysis:</strong> <span data-translate="component3Content">Provides comprehensive analysis of ergonomics and structural integrity using advanced visualization techniques.</span></li>
+                </ul>
+            </div>
+
+            <div class="photo-album">
+                <img src="../assets/manav/fig1.jpg" alt="Manav's Grasshopper logic">
+                <img src="../assets/manav/fig2.jpg" alt="Manav's segmented Grasshopper structure">
+                <img src="../assets/manav/fig3.jpg" alt="Posture rigging with integrated body type selections">
+                <img src="../assets/manav/fig4.jpg" alt="Galapagos' Gene Pool node integration">
+                <img src="../assets/manav/fig5.jpg" alt="Posture interpolation">
+                <img src="../assets/manav/fig6.jpg" alt="Body type selection interface">
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Language content
+        const translations = {
+            'en': {
+                // Navigation
+                nav_home: 'Home',
+                nav_about: 'About',
+                nav_contact: 'Contact',
+                // Project content
+                title: 'Manav मानव',
+                location: 'Location',
+                locationContent: 'New York, United States',
+                program: 'Program',
+                programContent: 'Software Development',
+                year: 'Year',
+                yearContent: '2024',
+                team: 'Team',
+                teamContent: 'John Xianfeng Jiang, Manas Bhatia, Hao Lee, Sebastian Schloesser',
+                whatIsManav: 'What is Manav?',
+                description1: 'Manav is an innovative Grasshopper plug-in specifically designed to generate ergonomic furniture based on human postures. This tool accommodates a wide spectrum of poses, ranging from everyday positions to extreme and unconventional ones, such as handstands or mid-cartwheel. By analyzing these diverse postures, Manav creates customized furniture tailored to the specific body configurations of users, thereby offering a harmonious blend of functionality and creativity in furniture design.',
+                keyBenefits: 'Key Benefits',
+                benefit1Title: 'Rapid Prototyping',
+                benefit1Content: 'Designers and manufacturers can swiftly prototype unique furniture solutions tailored to specific users or applications, significantly reducing traditional design process time.',
+                benefit2Title: 'Customized and Adaptive Furniture',
+                benefit2Content: 'Generate fully customized furniture that accommodates a wide range of postures, ensuring unparalleled comfort and support.',
+                benefit3Title: 'Inclusivity and Accessibility',
+                benefit3Content: 'Facilitates the design of more inclusive furniture options that cater to individuals with diverse physical needs or disabilities.',
+                whoIsItFor: 'Who Is It For?',
+                audience1Title: 'Furniture Designers and Manufacturers',
+                audience1Content: 'Create customizable, ergonomic, or avant-garde furniture that adapts to unique user needs.',
+                audience2Title: 'Workplace and Office Solutions',
+                audience2Content: 'Optimize workspaces for comfort and productivity, supporting diverse working styles and body types.',
+                audience3Title: 'Healthcare and Rehabilitation',
+                audience3Content: 'Design customized supportive furniture for various postures and mobility challenges in healthcare settings.',
+                technicalComponents: 'Technical Components',
+                componentsIntro: 'Manav consists of three main parts:',
+                component1Title: 'Posture Rigging',
+                component1Content: 'Features both freeform dragging and parameterized approaches for intuitive mannequin manipulation.',
+                component2Title: 'Furniture Generation',
+                component2Content: 'Includes assembly furniture, adaptive furniture, and soft-body furniture generation methods.',
+                component3Title: 'Furniture Analysis',
+                component3Content: 'Provides comprehensive analysis of ergonomics and structural integrity using advanced visualization techniques.'
+            },
+            'ja': {
+                // Navigation
+                nav_home: 'ホーム',
+                nav_about: '概要',
+                nav_contact: 'お問い合わせ',
+                // Project content
+                title: 'マナヴ मानव',
+                location: '場所',
+                locationContent: 'ニューヨーク、アメリカ合衆国',
+                program: 'プログラム',
+                programContent: 'ソフトウェア開発',
+                year: '年',
+                yearContent: '2024',
+                team: 'チーム',
+                teamContent: 'ジョン・賢峰・蔣、マナス・バティア、ハオ・リー、セバスチャン・シュロッサー',
+                whatIsManav: 'マナヴとは？',
+                description1: 'マナヴは、人間の姿勢に基づいて人間工学的な家具を生成するために特別に設計された革新的なGrasshopperプラグインです。このツールは、日常的な姿勢から倒立や宙返りなどの極端で非従来的な姿勢まで、幅広い姿勢に対応します。これらの多様な姿勢を分析することで、マナヴはユーザーの特定の体型に合わせてカスタマイズされた家具を作成し、機能性と創造性の調和のとれたブレンドを提供します。',
+                keyBenefits: '主な利点',
+                benefit1Title: '迅速なプロトタイピング',
+                benefit1Content: 'デザイナーや製造業者は、特定のユーザーやアプリケーションに合わせた独自の家具ソリューションを迅速にプロトタイプ化でき、従来のデザインプロセスにかかる時間を大幅に削減できます。',
+                benefit2Title: 'カスタマイズ可能な適応型家具',
+                benefit2Content: '幅広い姿勢に対応する完全カスタマイズ可能な家具を生成し、比類のない快適性とサポートを確保します。',
+                benefit3Title: '包括性とアクセシビリティ',
+                benefit3Content: '多様な身体的ニーズや障害を持つ個人に対応する、より包括的な家具オプションの設計を促進します。',
+                whoIsItFor: '対象ユーザー',
+                audience1Title: '家具デザイナーと製造業者',
+                audience1Content: 'ユーザーの独自のニーズに適応するカスタマイズ可能で人間工学的、またはアバンギャルドな家具を作成します。',
+                audience2Title: 'ワークプレイスとオフィスソリューション',
+                audience2Content: '多様な作業スタイルと体型をサポートし、快適性と生産性を最適化します。',
+                audience3Title: 'ヘルスケアとリハビリテーション',
+                audience3Content: '医療環境における様々な姿勢や移動の課題に対応するカスタマイズされたサポート家具を設計します。',
+                technicalComponents: '技術的コンポーネント',
+                componentsIntro: 'マナヴは3つの主要部分で構成されています：',
+                component1Title: 'ポーズリギング',
+                component1Content: '直感的なマネキン操作のための自由形式のドラッグとパラメータ化されたアプローチの両方を特徴としています。',
+                component2Title: '家具生成',
+                component2Content: 'アセンブリ家具、適応型家具、ソフトボディ家具の生成方法を含みます。',
+                component3Title: '家具分析',
+                component3Content: '高度な視覚化技術を使用して、人間工学と構造的完全性の包括的な分析を提供します。'
+            },
+            'zh-CN': {
+                // Navigation
+                nav_home: '首页',
+                nav_about: '关于',
+                nav_contact: '联系',
+                // Project content
+                title: '马纳夫 मानव',
+                location: '地点',
+                locationContent: '纽约，美国',
+                program: '项目',
+                programContent: '软件开发',
+                year: '年份',
+                yearContent: '2024',
+                team: '团队',
+                teamContent: '蒋贤峰、马纳斯·巴蒂亚、李浩、塞巴斯蒂安·施洛瑟',
+                whatIsManav: '什么是马纳夫？',
+                description1: '马纳夫是一个创新的Grasshopper插件，专门设计用于基于人体姿势生成人体工程学家具。该工具可适应广泛的姿势范围，从日常姿势到极端和非常规姿势，如倒立或空翻。通过分析这些不同的姿势，马纳夫创建根据用户特定身体配置定制的家具，从而在家具设计中提供功能性和创造性的和谐融合。',
+                keyBenefits: '主要优势',
+                benefit1Title: '快速原型设计',
+                benefit1Content: '设计师和制造商可以快速制作针对特定用户或应用的独特家具解决方案原型，显著减少传统设计流程时间。',
+                benefit2Title: '定制和适应性家具',
+                benefit2Content: '生成完全定制的家具，适应各种姿势，确保无与伦比的舒适性和支持。',
+                benefit3Title: '包容性和可访问性',
+                benefit3Content: '促进更具包容性的家具选项设计，满足具有不同身体需求或残疾人士的需求。',
+                whoIsItFor: '适用对象',
+                audience1Title: '家具设计师和制造商',
+                audience1Content: '创建可定制、符合人体工程学或前卫的家具，适应独特的用户需求。',
+                audience2Title: '工作场所和办公解决方案',
+                audience2Content: '优化工作空间的舒适度和生产力，支持多样化的工作风格和体型。',
+                audience3Title: '医疗保健和康复',
+                audience3Content: '为医疗环境中的各种姿势和移动挑战设计定制支持家具。',
+                technicalComponents: '技术组件',
+                componentsIntro: '马纳夫包含三个主要部分：',
+                component1Title: '姿势绑定',
+                component1Content: '具有自由形式拖动和参数化方法，用于直观的人体模型操作。',
+                component2Title: '家具生成',
+                component2Content: '包括组装家具、适应性家具和软体家具生成方法。',
+                component3Title: '家具分析',
+                component3Content: '使用先进的可视化技术提供人体工程学和结构完整性的综合分析。'
+            },
+            'zh-TW': {
+                // Navigation
+                nav_home: '首頁',
+                nav_about: '關於',
+                nav_contact: '聯絡',
+                // Project content
+                title: '馬納夫 मानव',
+                location: '地點',
+                locationContent: '紐約，美國',
+                program: '項目',
+                programContent: '軟體開發',
+                year: '年份',
+                yearContent: '2024',
+                team: '團隊',
+                teamContent: '蔣賢峰、馬納斯·巴蒂亞、李浩、塞巴斯蒂安·施洛瑟',
+                whatIsManav: '什麼是馬納夫？',
+                description1: '馬納夫是一個創新的Grasshopper插件，專門設計用於基於人體姿勢生成人體工程學家具。該工具可適應廣泛的姿勢範圍，從日常姿勢到極端和非常規姿勢，如倒立或空翻。通過分析這些不同的姿勢，馬納夫創建根據用戶特定身體配置定制的家具，從而在家具設計中提供功能性和創造性的和諧融合。',
+                keyBenefits: '主要優勢',
+                benefit1Title: '快速原型設計',
+                benefit1Content: '設計師和製造商可以快速製作針對特定用戶或應用的獨特家具解決方案原型，顯著減少傳統設計流程時間。',
+                benefit2Title: '定制和適應性家具',
+                benefit2Content: '生成完全定制的家具，適應各種姿勢，確保無與倫比的舒適性和支持。',
+                benefit3Title: '包容性和可訪問性',
+                benefit3Content: '促進更具包容性的家具選項設計，滿足具有不同身體需求或殘疾人士的需求。',
+                whoIsItFor: '適用對象',
+                audience1Title: '家具設計師和製造商',
+                audience1Content: '創建可定制、符合人體工程學或前衛的家具，適應獨特的用戶需求。',
+                audience2Title: '工作場所和辦公解決方案',
+                audience2Content: '優化工作空間的舒適度和生產力，支持多樣化的工作風格和體型。',
+                audience3Title: '醫療保健和康復',
+                audience3Content: '為醫療環境中的各種姿勢和移動挑戰設計定制支持家具。',
+                technicalComponents: '技術組件',
+                componentsIntro: '馬納夫包含三個主要部分：',
+                component1Title: '姿勢綁定',
+                component1Content: '具有自由形式拖動和參數化方法，用於直觀的人體模型操作。',
+                component2Title: '家具生成',
+                component2Content: '包括組裝家具、適應性家具和軟體家具生成方法。',
+                component3Title: '家具分析',
+                component3Content: '使用先進的可視化技術提供人體工程學和結構完整性的綜合分析。'
+            }
+        };
+
+        // Function to update content based on selected language
+        function updateContent(lang) {
+            // Update active state of language buttons
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Store the selected language in localStorage
+            localStorage.setItem('selectedProjectLanguage', lang);
+        }
+
+        // Add click event listeners to language buttons
+        document.querySelectorAll('.language-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                updateContent(lang);
+            });
+        });
+
+        // Initialize with English as default language
+        document.addEventListener('DOMContentLoaded', () => {
+            // Check if there's a stored language preference
+            const storedLang = localStorage.getItem('selectedProjectLanguage');
+            updateContent(storedLang || 'en');
+        });
+    </script>
+</body>
+</html> 

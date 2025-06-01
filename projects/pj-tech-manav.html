@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project - Manav</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header and Navigation */
+        header {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .language-selector select {
+            padding: 8px 30px 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 14px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .language-selector select:focus {
+            outline: none;
+            border-color: #333;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+        }
+
+        /* Project-specific styles */
+        main {
+            margin-top: 0; /* Override the default margin from styles.css */
+            padding: 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 65vh;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            margin-top: 60px; /* Add margin to account for fixed header */
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            padding: 2rem;
+            max-width: 50%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                max-width: 90%;
+            }
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: #000;
+            padding: 0;
+            width: 100%;
+            text-align: left;
+        }
+
+        .project-subtitle {
+            font-size: 1.5rem;
+            margin-top: -2rem;
+            margin-bottom: 2rem;
+            color: #666;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 0;
+            width: 100%;
+            text-align: left;
+        }
+
+        .language-options {
+            display: flex;
+            gap: 0.1rem;
+            margin-bottom: 2rem;
+            padding: 0;
+            width: 100%;
+        }
+
+        .language-btn {
+            padding: 0.5rem 0;
+            margin-right: 2rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            text-align: left;
+        }
+
+        .language-btn.active {
+            opacity: 1;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .project-details {
+            margin-bottom: 2rem;
+            padding: 0;
+        }
+
+        .project-details p {
+            margin: 0.5rem 0;
+            padding: 0;
+        }
+
+        .project-description {
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .project-description p {
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .project-description h2 {
+            font-size: 2rem;
+            font-weight: 500;
+            margin: 3rem 0 1.5rem;
+            color: #333;
+        }
+
+        .project-description h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 2rem 0 1rem;
+            color: #444;
+        }
+
+        .project-description .intro-question {
+            font-size: 1.8rem;
+            font-weight: 300;
+            font-style: italic;
+            color: #555;
+            line-height: 1.4;
+            margin: 2rem 0;
+            padding: 1rem 0;
+            border-top: 1px solid #eee;
+            border-bottom: 1px solid #eee;
+        }
+
+        .project-description .key-features {
+            margin: 2rem 0;
+            padding: 0;
+        }
+
+        .project-description .key-features li {
+            margin-bottom: 1rem;
+            list-style-type: none;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .project-description .key-features li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #666;
+        }
+
+        .project-description .reference {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        .project-description .reference p {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-description .technical-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .project-description .part-title {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: #222;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .project-description .figure-container {
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .project-description .figure-container img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .project-description .figure-caption {
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+            margin: 0.5rem 0;
+            text-align: center;
+        }
+
+        .project-description .subpart {
+            margin: 2rem 0;
+        }
+
+        .project-description .subpart-title {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #444;
+            margin: 1.5rem 0 1rem;
+        }
+
+        .photo-album {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 0.1rem;
+            padding: 2rem 0;
+        }
+
+        .photo-album img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border-radius: 4px;
+        }
+
+        .photo-album img:hover {
+            transform: scale(1.02);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-image {
+            max-width: 85%;
+            max-height: 85vh;
+            object-fit: contain;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            pointer-events: none;
+        }
+
+        .modal-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            color: white;
+            font-size: 2rem;
+            border-radius: 50%;
+            transition: background-color 0.3s, transform 0.3s;
+            pointer-events: auto;
+        }
+
+        .modal-nav button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            transition: transform 0.3s;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.1);
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html" data-translate="nav_home">Home</a></li>
+                <li><a href="../about.html" data-translate="nav_about">About</a></li>
+                <li><a href="../contact.html" data-translate="nav_contact">Contact</a></li>
+                <li><a href="../map.html" data-translate="nav_map">Map</a></li>
+                <li><a href="../work.html" data-translate="nav_work">Work</a></li>
+                <li><a href="https://www.instagram.com/jjjhiker/" target="_blank" data-translate="nav_instagram">Instagram</a></li>
+                <li><a href="https://www.linkedin.com/in/johnmasataka-xianfeng-jiang/" target="_blank" data-translate="nav_linkedin">LinkedIn</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en" data-lang="en">English</option>
+                <option value="ja" data-lang="ja">日本語</option>
+                <option value="zh-CN" data-lang="zh-CN">简体中文</option>
+                <option value="zh-TW" data-lang="zh-TW">繁體中文</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-image">
+            <img src="../images/manav.jpg" alt="Project Hero Image">
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="project-title" data-translate="title">Project Name</h1>
+            <h2 class="project-subtitle" data-translate="subtitle">Posture-Based Furniture Generation</h2>
+            
+            <div class="language-options">
+                <button class="language-btn active" data-lang="en">English</button>
+                <button class="language-btn" data-lang="ja">日本語</button>
+                <button class="language-btn" data-lang="zh-CN">简体中文</button>
+                <button class="language-btn" data-lang="zh-TW">繁體中文</button>
+            </div>
+
+            <div class="project-details">
+                <p><strong data-translate="location">Location</strong>: <span data-translate="locationContent">[Location Placeholder]</span></p>
+                <p><strong data-translate="program">Program</strong>: <span data-translate="programContent">[Program Placeholder]</span></p>
+                <p><strong data-translate="year">Year</strong>: <span data-translate="yearContent">[Year Placeholder]</span></p>
+                <p><strong data-translate="team">Team</strong>: <span data-translate="teamContent">[Team Placeholder]</span></p>
+                <p><strong data-translate="info">Info</strong>: <span data-translate="infoContent">[Info Placeholder]</span></p>
+            </div>
+
+            <div class="project-description">
+                <p class="intro-question" data-translate="intro_question">As a designer, how do you create furniture that balances ergonomic precision with aesthetic appeal? Imagine a tool that empowers you to design for any posture — no matter how conventional or extraordinary — adapting seamlessly to each user's unique needs.</p>
+
+                <h2 data-translate="what_is_manav">What is Manav?</h2>
+                <p data-translate="description1">Manav is an innovative Grasshopper plug-in specifically designed to generate ergonomic furniture based on human postures. This tool accommodates a wide spectrum of poses, ranging from everyday positions to extreme and unconventional ones, such as handstands or mid-cartwheel. By analyzing these diverse postures, Manav creates customized furniture tailored to the specific body configurations of users, thereby offering a harmonious blend of functionality and creativity in furniture design.</p>
+
+                <h2 data-translate="video_intro">Video Introduction for Manav</h2>
+                <!-- Video placeholder -->
+
+                <h3 data-translate="key_benefits">Key Benefits</h3>
+                <ul class="key-features">
+                    <li><strong data-translate="rapid_prototyping_title">Rapid Prototyping:</strong> <span data-translate="rapid_prototyping_desc">Designers and manufacturers can swiftly prototype unique furniture solutions tailored to specific users or applications. This capability significantly reduces the time and effort typically associated with traditional design processes, allowing for a more agile response to user needs.</span></li>
+                    <li><strong data-translate="customized_furniture_title">Customized and Adaptive Furniture:</strong> <span data-translate="customized_furniture_desc">The tool empowers users to generate fully customized furniture that accommodates a wide range of postures, including unconventional ones. This ensures unparalleled comfort and support, promoting a healthier and more ergonomic interaction with the furniture.</span></li>
+                    <li><strong data-translate="inclusivity_title">Inclusivity and Accessibility:</strong> <span data-translate="inclusivity_desc">By adapting to various body postures, Manav facilitates the design of more inclusive furniture options that cater to individuals with diverse physical needs or disabilities. This commitment to inclusivity enhances accessibility in furniture design, making it possible for everyone to benefit from well-designed ergonomic solutions.</span></li>
+                </ul>
+
+                <h2 data-translate="who_is_it_for">Who Is It For?</h2>
+                <p data-translate="who_is_it_for_desc">Manav leverages computational methods to provide a wide array of possibilities for diverse demographics. Whether for speculative or practical purposes, artistic or functional applications, this tool fosters flexibility and innovation in furniture design, accommodating various contexts.</p>
+
+                <h2 data-translate="how_it_works">How Does It Work?</h2>
+                <p data-translate="how_it_works_desc">Manav currently consists of three main parts: posture rigging, furniture generation, and furniture analysis.</p>
+
+                <div class="technical-section">
+                    <h2 class="part-title" data-translate="part1_title">Part I: Parameterized Posture Rigging in Grasshopper</h2>
+                    <p>One of the most notable features of Manav is its ability to intuitively manipulate postures and body types exclusively using Grasshopper's native nodes, without relying on additional plugins. This design approach emphasizes accessibility and flexibility, allowing users to adjust poses and body types seamlessly within a custom-built mannequin tool.</p>
+                    
+                    <div class="figure-container">
+                        <img src="./pj-images/pj-tech-manav/manav-1.png" alt="Manav's Grasshopper logic">
+                        <p class="figure-caption">Fig 1. <span data-translate="fig1_caption">Manav's Grasshopper logic.</span></p>
+                    </div>
+
+                    <div class="figure-container">
+                        <img src="./pj-images/pj-tech-manav/manav-2.webp" alt="Manav's segmented Grasshopper structure">
+                        <p class="figure-caption">Fig 2. <span data-translate="fig2_caption">Manav's segmented Grasshopper structure: body, chair, and analysis.</span></p>
+                    </div>
+
+                    <div class="figure-container">
+                        <img src="./pj-images/pj-tech-manav/manav-3.webp" alt="Manav's posture rigging">
+                        <p class="figure-caption">Fig 3. <span data-translate="fig3_caption">Manav's posture rigging with integrated body type selections.</span></p>
+                    </div>
+
+                    <div class="subpart">
+                        <h3 class="subpart-title">I. Posture Slider</h3>
+                        <p>Manav features global, local, and individual limb controls, allowing for a comprehensive range of adjustments. It includes several preset posture types, enabling users to utilize sliders for interpolation between these poses. For the rigging of postures, we primarily employ Grasshopper's Line SDL node, applying various directional inputs to effectively generate the limbs and joints.</p>
+                        
+                        <div class="figure-container">
+                            <img src="./pj-images/pj-tech-manav/manav-4.png" alt="Galapagos' Gene Pool">
+                            <p class="figure-caption">Fig 4. <span data-translate="fig4_caption">Galapagos' Gene Pool node enables the mannequin's pose parameters to be integrated into different chair generation methods.</span></p>
+                        </div>
+
+                        <div class="figure-container">
+                            <img src="./pj-images/pj-tech-manav/manav-5.gif" alt="Posture interpolation">
+                            <p class="figure-caption">Fig 5. <span data-translate="fig5_caption">Posture interpolation between sitting and lying down.</span></p>
+                        </div>
+
+                        <p>The mannequin construction initiates from the hip position — a crucial point in the torso for this project — from which the remaining torso and limbs are generated. This process resembles the growth of a tree, where the trunk serves as the primary structure, and any movement or rotation of this "parent" element subsequently influences its "child" elements.</p>
+                    </div>
+
+                    <div class="subpart">
+                        <h3 class="subpart-title">II. Body Type Selection</h3>
+                        <p>Manav utilizes Value List and Explode Tree (BANG!) nodes to consolidate body metrics into streamlined text files, enabling efficient data organization and accessibility within Grasshopper. All body metrics are compiled into a unified CSV file, facilitating streamlined access and analysis.</p>
+
+                        <div class="figure-container">
+                            <img src="./pj-images/pj-tech-manav/manav-6.webp" alt="Using csvs and Value List">
+                            <p class="figure-caption">Fig 6. <span data-translate="fig6_caption">Using csvs and the Value List node, users are able to select or create different body type sets.</span></p>
+                        </div>
+
+                        <div class="figure-container">
+                            <img src="./pj-images/pj-tech-manav/manav-7.webp" alt="Five different body types">
+                            <p class="figure-caption">Fig 7. <span data-translate="fig7_caption">For the MVP, we provide five different body types for testing.</span></p>
+                        </div>
+                    </div>
+
+                    <div class="subpart">
+                        <h3 class="subpart-title">III. Existing surface matching</h3>
+                        <p>Manav also supports workflows based on analyzing existing designs. In this case, the mannequin must arrange itself to match an existing surface, so that the analysis part can proceed with the most natural posture for that piece of furniture.</p>
+                    </div>
+
+                    <div class="subpart">
+                        <h3 class="subpart-title">IV. Output format</h3>
+                        <p>The Manav component will output every body joint as a point, every limb as a line, and also every body part's preview visualization BREP, making it easy for the generative design process to leverage any data type that is most convenient.</p>
+                    </div>
+                </div>
+
+                <div class="technical-section">
+                    <h2 class="part-title" data-translate="part2_title">Part II: Posture-Based Furniture Generation</h2>
+                    <p>Once we have the basic posture and body type parameters, we will be able to output them as furniture design references or put them in various posture-based furniture generators to explore different design approaches. Currently, Manav supports three generation methods:</p>
+
+                    <div class="figure-container">
+                        <img src="./pj-images/pj-tech-manav/manav-8.gif" alt="Natural-form chair">
+                        <p class="figure-caption">Fig 8. <span data-translate="fig8_caption">Natural-form chair generated from key body points.</span></p>
+                    </div>
+
+                    <div class="figure-container">
+                        <img src="./pj-images/pj-tech-manav/manav-9.gif" alt="Self-adaptable chair">
+                        <p class="figure-caption">Fig 9. <span data-translate="fig9_caption">Self-adaptable chair using evolutionary algorithm.</span></p>
+                    </div>
+
+                    <div class="figure-container">
+                        <img src="./pj-images/pj-tech-manav/manav-10.gif" alt="Stamping-molded chair">
+                        <p class="figure-caption">Fig 10. <span data-translate="fig10_caption">Stamping-molded chair following the human body surface.</span></p>
+                    </div>
+
+                    <div class="subpart">
+                        <h3 class="subpart-title">I. Assembly Furniture</h3>
+                        <p>Utilizing parameterized posture rigging in Grasshopper, we have developed several types of generative furniture, including assembled furniture. In this initial application, we use Manav to design a chair that perfectly integrates natural form with comfort and meets ergonomic standards.</p>
+
+                        <div class="figure-container">
+                            <img src="./pj-images/pj-tech-manav/manav-11a.png" alt="Posture A">
+                            <p class="figure-caption">Fig 11.1. <span data-translate="fig11_1_caption">Posture A.</span></p>
+                        </div>
+
+                        <div class="figure-container">
+                            <img src="./pj-images/pj-tech-manav/manav-11b.png" alt="Posture B">
+                            <p class="figure-caption">Fig 11.2. <span data-translate="fig11_2_caption">Posture B.</span></p>
+                        </div>
+
+                        <div class="figure-container">
+                            <img src="./pj-images/pj-tech-manav/manav-11c.png" alt="Posture C">
+                            <p class="figure-caption">Fig 11.3. <span data-translate="fig11_3_caption">Posture C.</span></p>
+                        </div>
+                    </div>
+
+                    <div class="subpart">
+                        <h3 class="subpart-title">II. Adaptive Furniture</h3>
+                        <p>As an alternative approach to the procedurally generated chair designs, we are also exploring a design that can adapt itself to various postures. A user could use an interface to specify the ideal posture they desire, and the chair would change its configuration to the most suitable.</p>
+
+                        <div class="figure-container">
+                            <img src="./pj-images/pj-tech-manav/manav-12a.png" alt="Adaptive Furniture">
+                            <img src="./pj-images/pj-tech-manav/manav-12b.png" alt="Adaptive Furniture">
+                            <p class="figure-caption">Fig 12. <span data-translate="fig12_caption">Adaptive Furniture.</span></p>
+                        </div>
+                    </div>
+
+                    <div class="subpart">
+                        <h3 class="subpart-title">III. Soft-body Furniture</h3>
+                        <p>The furniture design focuses on creating a soft body version of a chair that adapts to the user's body, offering a modular and customizable seating experience. Inspired by the traditional Eames plastic chair, this design emphasizes flexibility and support through a responsive surface.</p>
+                    </div>
+                </div>
+
+                <div class="technical-section">
+                    <h2 class="part-title" data-translate="part3_title">Part III: Analysis</h2>
+                    <p>Once the furniture design is generated — or if an existing furniture piece is used — the analysis starts by extracting the chair's surface geometry. Using an optimized posture, points from the body are compared with the chair's surface to identify areas of closest contact.</p>
+
+                    <div class="figure-container">
+                        <img src="./pj-images/pj-tech-manav/manav-13.png" alt="Furniture Analysis">
+                        <p class="figure-caption">Fig 13. <span data-translate="fig13_caption">Furniture Analysis.</span></p>
+                    </div>
+
+                    <div class="figure-container">
+                        <img src="./pj-images/pj-tech-manav/manav-14a.gif" alt="Load displacement">
+                        <img src="./pj-images/pj-tech-manav/manav-14b.gif" alt="Load displacement">
+                        <p class="figure-caption">Fig 14. <span data-translate="fig14_caption">Load displacement.</span></p>
+                    </div>
+
+                    <div class="figure-container">
+                        <img src="./pj-images/pj-tech-manav/manav-15.gif" alt="Equivalent load stress">
+                        <p class="figure-caption">Fig 15. <span data-translate="fig15_caption">Equivalent load stress.</span></p>
+                    </div>
+
+                    <div class="figure-container">
+                        <img src="./pj-images/pj-tech-manav/manav-16.png" alt="Script">
+                        <p class="figure-caption">Fig 16. <span data-translate="fig16_caption">Script</span></p>
+                    </div>
+                    
+                    <p>These proximity zones are visualized with a gradient: red indicates areas where the chair is closest to the body, while blue highlights regions that are further away. This gradient-based visualization provides insights into how well the chair conforms to the body, identifying pressure points and ensuring ergonomic support.</p>
+                </div>
+
+                <div class="reference">
+                    <h3>References</h3>
+                    <p>Piker, D. (2019, August 13). Inverse kinematics post #2. McNeel Forum. https://discourse.mcneel.com/t/inverse-kinematics/87440/2</p>
+                    <p>Rietveld Landscape, R. (2024a, October 31). The End of Sitting. https://www.raaaf.nl/en/projects/927_the_end_of_sitting</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="photo-album">
+            <img src="./pj-images/pj-arch-cinema/cinema-1.jpg" alt="Project Image 1">
+            <img src="./pj-images/pj-arch-cinema/cinema-2.jpg" alt="Project Image 2">  
+            <img src="./pj-images/pj-arch-cinema/cinema-3.jpg" alt="Project Image 3">
+            <img src="./pj-images/pj-arch-cinema/cinema-4.jpg" alt="Project Image 4">
+            <img src="./pj-images/pj-arch-cinema/cinema-5.jpg" alt="Project Image 5">
+            <img src="./pj-images/pj-arch-cinema/cinema-6.jpg" alt="Project Image 6">
+            <img src="./pj-images/pj-arch-cinema/cinema-7.jpg" alt="Project Image 1">
+            <img src="./pj-images/pj-arch-cinema/cinema-8.jpg" alt="Project Image 2">  
+            <img src="./pj-images/pj-arch-cinema/cinema-9.jpg" alt="Project Image 3">
+            <img src="./pj-images/pj-arch-cinema/cinema-10.jpg" alt="Project Image 4">
+            <img src="./pj-images/pj-arch-cinema/cinema-11.jpg" alt="Project Image 5">
+            <img src="./pj-images/pj-arch-cinema/cinema-12.jpg" alt="Project Image 6">
+            <img src="./pj-images/pj-arch-cinema/cinema-13.jpg" alt="Project Image 6">
+        </div> -->
+
+        <div class="modal">
+            <button class="close-modal">×</button>
+            <div class="modal-content">
+                <img class="modal-image" src="" alt="Modal Image">
+                <div class="modal-nav">
+                    <button class="prev-btn">←</button>
+                    <button class="next-btn">→</button>
+                </div>
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © - All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Prevent right-click on the entire page
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Prevent drag and drop of images
+        document.addEventListener('dragstart', (e) => e.preventDefault());
+
+        // Language content including navigation translations
+        const translations = {
+            'en': {
+                // Navigation
+                nav_home: 'Home',
+                nav_about: 'About',
+                nav_contact: 'Contact',
+                nav_map: 'Map',
+                nav_work: 'Work',
+                nav_instagram: 'Instagram',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: 'Manav मानव',
+                subtitle: 'Posture-Based Furniture Generation',
+                location: 'Location',
+                locationContent: 'New York, United States',
+                program: 'Program',
+                programContent: 'Software Development',
+                year: 'Year',
+                yearContent: '2024',
+                team: 'Team',
+                teamContent: 'John Xianfeng Jiang, Manas Bhatia, Hao Lee, Sebastian Schloesser',
+                info: 'Tool',
+                infoContent: 'Python | Grasshopper | Rhinoceros',
+                // Main content
+                intro_question: 'As a designer, how do you create furniture that balances ergonomic precision with aesthetic appeal? Imagine a tool that empowers you to design for any posture — no matter how conventional or extraordinary — adapting seamlessly to each user\'s unique needs.',
+                what_is_manav: 'What is Manav?',
+                description1: 'Manav is an innovative Grasshopper plug-in specifically designed to generate ergonomic furniture based on human postures. This tool accommodates a wide spectrum of poses, ranging from everyday positions to extreme and unconventional ones, such as handstands or mid-cartwheel. By analyzing these diverse postures, Manav creates customized furniture tailored to the specific body configurations of users, thereby offering a harmonious blend of functionality and creativity in furniture design.',
+                video_intro: 'Video Introduction for Manav',
+                key_benefits: 'Key Benefits',
+                who_is_it_for: 'Who Is It For?',
+                who_is_it_for_desc: 'Manav leverages computational methods to provide a wide array of possibilities for diverse demographics. Whether for speculative or practical purposes, artistic or functional applications, this tool fosters flexibility and innovation in furniture design, accommodating various contexts.',
+                how_it_works: 'How Does It Work?',
+                how_it_works_desc: 'Manav currently consists of three main parts: posture rigging, furniture generation, and furniture analysis.',
+                // Technical sections
+                part1_title: 'Part I: Parameterized Posture Rigging in Grasshopper',
+                part2_title: 'Part II: Posture-Based Furniture Generation',
+                part3_title: 'Part III: Analysis',
+                // Key features
+                rapid_prototyping_title: 'Rapid Prototyping',
+                rapid_prototyping_desc: 'Designers and manufacturers can swiftly prototype unique furniture solutions tailored to specific users or applications. This capability significantly reduces the time and effort typically associated with traditional design processes, allowing for a more agile response to user needs.',
+                customized_furniture_title: 'Customized and Adaptive Furniture',
+                customized_furniture_desc: 'The tool empowers users to generate fully customized furniture that accommodates a wide range of postures, including unconventional ones. This ensures unparalleled comfort and support, promoting a healthier and more ergonomic interaction with the furniture.',
+                inclusivity_title: 'Inclusivity and Accessibility',
+                inclusivity_desc: 'By adapting to various body postures, Manav facilitates the design of more inclusive furniture options that cater to individuals with diverse physical needs or disabilities. This commitment to inclusivity enhances accessibility in furniture design, making it possible for everyone to benefit from well-designed ergonomic solutions.'
+            },
+            'ja': {
+                // Navigation
+                nav_home: 'ホーム',
+                nav_about: '概要',
+                nav_contact: 'お問い合わせ',
+                nav_map: '地図',
+                nav_work: 'プロジェクト',
+                nav_instagram: 'Instagram',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: 'Manav マナヴ',
+                subtitle: '姿勢に基づく家具生成システム',
+                location: '場所',
+                locationContent: 'アメリカ ニューヨーク',
+                program: 'プログラム',
+                programContent: 'ソフトウェア開発',
+                year: '年',
+                yearContent: '2024',
+                team: 'チーム',
+                teamContent: 'ジョン・賢峰・蔣, マナス・バタイア, 李 浩, セバスチャン・シュローゼル',
+                info: 'ツール',
+                infoContent: 'Python | Grasshopper | Rhinoceros',
+                // Main content
+                intro_question: 'デザイナーとして、人間工学的な精度と美的魅力のバランスを取った家具をどのように作り出しますか？従来のものであれ、特殊なものであれ、あらゆる姿勢に対応し、各ユーザーのニーズにシームレスに適応できるツールを想像してみてください。',
+                what_is_manav: 'Manavとは？',
+                description1: 'Manavは、人間の姿勢に基づいて人間工学的な家具を生成するために特別に設計された革新的なGrasshopperプラグインです。このツールは、日常的な姿勢から、倒立や宙返りの途中といった極端で非従来的な姿勢まで、幅広い姿勢に対応します。これらの多様な姿勢を分析することで、Manavはユーザーの特定の体の構成に合わせてカスタマイズされた家具を作成し、家具デザインにおける機能性と創造性の調和を実現します。',
+                video_intro: 'Manavの紹介ビデオ',
+                key_benefits: '主な特長',
+                who_is_it_for: '対象ユーザー',
+                who_is_it_for_desc: 'Manavは計算手法を活用して、多様なユーザー層に向けた幅広い可能性を提供します。実用的な目的であれ実験的な目的であれ、芸術的な用途であれ機能的な用途であれ、このツールは家具デザインにおける柔軟性とイノベーションを促進し、様々な文脈に対応します。',
+                how_it_works: '動作の仕組み',
+                how_it_works_desc: 'Manavは現在、姿勢リギング、家具生成、分析の3つの主要部分で構成されています。',
+                // Technical sections
+                part1_title: 'パート I: Grasshopperにおけるパラメータ化された姿勢リギング',
+                part2_title: 'パート II: 姿勢に基づく家具生成',
+                part3_title: 'パート III: 分析',
+                // Key features
+                rapid_prototyping_title: '迅速なプロトタイピング',
+                rapid_prototyping_desc: 'デザイナーや製造業者は、特定のユーザーやアプリケーションに合わせた独自の家具ソリューションを迅速にプロトタイプ化できます。この機能により、従来のデザインプロセスに通常伴う時間と労力を大幅に削減し、ユーザーのニーズにより機敏に対応することができます。',
+                customized_furniture_title: 'カスタマイズと適応性のある家具',
+                customized_furniture_desc: 'このツールは、非従来的な姿勢を含む幅広い姿勢に対応する完全にカスタマイズされた家具を生成することができます。これにより、比類のない快適性とサポートを確保し、家具とのより健康的で人間工学的な相互作用を促進します。',
+                inclusivity_title: '包括性とアクセシビリティ',
+                inclusivity_desc: '様々な体の姿勢に適応することで、Manavは多様な身体的ニーズや障害を持つ個人に対応する、よりインクルーシブな家具オプションの設計を可能にします。この包括性へのコミットメントにより、家具デザインのアクセシビリティが向上し、誰もが適切に設計された人間工学的なソリューションの恩恵を受けることができます。',
+                // Figure captions
+                fig1_caption: 'Manavのグラスホッパーロジック',
+                fig2_caption: 'Manavのセグメント化されたグラスホッパー構造：ボディ、チェア、分析',
+                fig3_caption: '体型選択機能を統合したManavのポーズリギング',
+                fig4_caption: 'Galapagoのジーンプールノードにより、マネキンのポーズパラメータを異なる椅子生成方法に統合することが可能',
+                fig5_caption: '着座姿勢と横臥姿勢の間の姿勢補間',
+                fig6_caption: 'CSVとバリューリストノードを使用して、ユーザーは異なる体型セットを選択または作成可能',
+                fig7_caption: 'MVPでは、テスト用に5つの異なる体型を提供',
+                fig8_caption: '身体の主要ポイントから生成された自然形状の椅子',
+                fig9_caption: '進化的アルゴリズムを使用した自己適応型チェア',
+                fig10_caption: '人体の表面に沿ったスタンピング成形チェア',
+                fig11_1_caption: 'ポーズA',
+                fig11_2_caption: 'ポーズB',
+                fig11_3_caption: 'ポーズC',
+                fig12_caption: '適応型家具',
+                fig13_caption: '家具分析',
+                fig14_caption: '荷重変位',
+                fig15_caption: '等価応力',
+                fig16_caption: 'スクリプト'
+            },
+            'zh-CN': {
+                // Navigation
+                nav_home: '首页',
+                nav_about: '关于',
+                nav_contact: '联系',
+                nav_map: '地图',
+                nav_work: '作品',
+                nav_instagram: 'INS',
+                nav_linkedin: '领英',
+                // Project content
+                title: 'Manav',
+                subtitle: '基于人体姿势的家具生成系统',
+                location: '位置',
+                locationContent: '美国 纽约',
+                program: '类型',
+                programContent: '软件开发',
+                year: '年份',
+                yearContent: '2024',
+                team: '团队',
+                teamContent: '蒋贤峰, 马纳什·巴塔亚, 李浩, 塞巴斯蒂安·施罗瑟',
+                info: '工具',
+                infoContent: 'Python | Grasshopper | Rhinoceros',
+                // Main content
+                intro_question: '作为设计师，如何创造出在人体工程学精确性和美学吸引力之间取得平衡的家具？想象一个工具，它能让你为任何姿势设计家具——无论是常规还是特殊姿势——都能无缝适应每个用户的独特需求。',
+                what_is_manav: '什么是Manav？',
+                description1: 'Manav是一个创新的Grasshopper插件，专门设计用于基于人体姿势生成符合人体工程学的家具。该工具可以适应广泛的姿势范围，从日常姿势到极端和非常规姿势，如倒立或空翻过程中的姿势。通过分析这些不同的姿势，Manav可以创建根据用户特定身体配置定制的家具，从而在家具设计中实现功能性和创造性的和谐融合。',
+                video_intro: 'Manav视频介绍',
+                key_benefits: '主要优势',
+                who_is_it_for: '适用对象',
+                who_is_it_for_desc: 'Manav利用计算方法为不同群体提供广泛的可能性。无论是出于实用还是实验目的，艺术还是功能应用，这个工具都能促进家具设计的灵活性和创新，适应各种场景。',
+                how_it_works: '工作原理',
+                how_it_works_desc: 'Manav目前由三个主要部分组成：姿势绑定、家具生成和分析。',
+                // Technical sections
+                part1_title: '第一部分：Grasshopper中的参数化姿势绑定',
+                part2_title: '第二部分：基于姿势的家具生成',
+                part3_title: '第三部分：分析',
+                // Key features
+                rapid_prototyping_title: '快速原型设计',
+                rapid_prototyping_desc: '设计师和制造商可以快速制作针对特定用户或应用的独特家具解决方案原型。这种能力显著减少了传统设计过程中通常需要的时间和精力，使其能够更灵活地响应用户需求。',
+                customized_furniture_title: '定制化和适应性家具',
+                customized_furniture_desc: '该工具使用户能够生成完全定制的家具，可适应各种姿势，包括非常规姿势。这确保了无与伦比的舒适性和支撑性，促进了与家具更健康和符合人体工程学的互动。',
+                inclusivity_title: '包容性和可访问性',
+                inclusivity_desc: '通过适应各种身体姿势，Manav促进了更具包容性的家具选项设计，满足具有不同身体需求或残障人士的需求。这种对包容性的承诺提高了家具设计的可访问性，使每个人都能从精心设计的人体工程学解决方案中受益。',
+                // Figure captions
+                fig1_caption: 'Manav的Grasshopper逻辑',
+                fig2_caption: 'Manav的分段Grasshopper结构：身体、椅子和分析',
+                fig3_caption: '集成体型选择的Manav姿势绑定',
+                fig4_caption: 'Galapagos基因池节点使人体模型的姿势参数能够集成到不同的椅子生成方法中',
+                fig5_caption: '坐姿和躺姿之间的姿势插值',
+                fig6_caption: '使用CSV和值列表节点，用户可以选择或创建不同的体型集',
+                fig7_caption: '在MVP中，我们提供五种不同的体型用于测试',
+                fig8_caption: '从关键身体点生成的自然形态椅子',
+                fig9_caption: '使用进化算法的自适应椅子',
+                fig10_caption: '跟随人体表面的压制成型椅子',
+                fig11_1_caption: '姿势A',
+                fig11_2_caption: '姿势B',
+                fig11_3_caption: '姿势C',
+                fig12_caption: '自适应家具',
+                fig13_caption: '家具分析',
+                fig14_caption: '载荷位移',
+                fig15_caption: '等效应力',
+                fig16_caption: '脚本'
+            },
+            'zh-TW': {
+                // Navigation
+                nav_home: '首頁',
+                nav_about: '關於',
+                nav_contact: '聯絡',
+                nav_map: '地圖',
+                nav_work: '作品',
+                nav_instagram: 'IG',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: 'Manav',
+                subtitle: '基於人體姿勢的家具生成系統',
+                location: '位置',
+                locationContent: '美國 紐約',
+                program: '類型',
+                programContent: '軟體開發',
+                year: '年份',
+                yearContent: '2024',
+                team: '團隊',
+                teamContent: '蔣賢峰, 馬納什·巴塔亞, 李浩, 塞巴斯蒂安·施羅瑟',
+                info: '工具',
+                infoContent: 'Python | Grasshopper | Rhinoceros',
+                // Main content
+                intro_question: '作為設計師，如何創造出在人體工程學精確性和美學吸引力之間取得平衡的家具？想像一個工具，它能讓你為任何姿勢設計家具——無論是常規還是特殊姿勢——都能無縫適應每個使用者的獨特需求。',
+                what_is_manav: '什麼是Manav？',
+                description1: 'Manav是一個創新的Grasshopper插件，專門設計用於基於人體姿勢生成符合人體工程學的家具。該工具可以適應廣泛的姿勢範圍，從日常姿勢到極端和非常規姿勢，如倒立或空翻過程中的姿勢。通過分析這些不同的姿勢，Manav可以創建根據使用者特定身體配置定制的家具，從而在家具設計中實現功能性和創造性的和諧融合。',
+                video_intro: 'Manav影片介紹',
+                key_benefits: '主要優勢',
+                who_is_it_for: '適用對象',
+                who_is_it_for_desc: 'Manav利用計算方法為不同群體提供廣泛的可能性。無論是出於實用還是實驗目的，藝術還是功能應用，這個工具都能促進家具設計的靈活性和創新，適應各種場景。',
+                how_it_works: '運作原理',
+                how_it_works_desc: 'Manav目前由三個主要部分組成：姿勢綁定、家具生成和分析。',
+                // Technical sections
+                part1_title: '第一部分：Grasshopper中的參數化姿勢綁定',
+                part2_title: '第二部分：基於姿勢的家具生成',
+                part3_title: '第三部分：分析',
+                // Key features
+                rapid_prototyping_title: '快速原型設計',
+                rapid_prototyping_desc: '設計師和製造商可以快速製作針對特定使用者或應用的獨特家具解決方案原型。這種能力顯著減少了傳統設計過程中通常需要的時間和精力，使其能夠更靈活地回應使用者需求。',
+                customized_furniture_title: '客製化和適應性家具',
+                customized_furniture_desc: '該工具使使用者能夠生成完全客製化的家具，可適應各種姿勢，包括非常規姿勢。這確保了無與倫比的舒適性和支撐性，促進了與家具更健康和符合人體工程學的互動。',
+                inclusivity_title: '包容性和可訪問性',
+                inclusivity_desc: '通過適應各種身體姿勢，Manav促進了更具包容性的家具選項設計，滿足具有不同身體需求或殘障人士的需求。這種對包容性的承諾提高了家具設計的可訪問性，使每個人都能從精心設計的人體工程學解決方案中受益。',
+                // Figure captions
+                fig1_caption: 'Manav的Grasshopper邏輯',
+                fig2_caption: 'Manav的分段Grasshopper結構：身體、椅子和分析',
+                fig3_caption: '集成體型選擇的Manav姿勢綁定',
+                fig4_caption: 'Galapagos基因池節點使人體模型的姿勢參數能夠集成到不同的椅子生成方法中',
+                fig5_caption: '坐姿和躺姿之間的姿勢插值',
+                fig6_caption: '使用CSV和值列表節點，用戶可以選擇或創建不同的體型集',
+                fig7_caption: '在MVP中，我們提供五種不同的體型用於測試',
+                fig8_caption: '從關鍵身體點生成的自然形態椅子',
+                fig9_caption: '使用進化算法的自適應椅子',
+                fig10_caption: '跟隨人體表面的壓制成型椅子',
+                fig11_1_caption: '姿勢A',
+                fig11_2_caption: '姿勢B',
+                fig11_3_caption: '姿勢C',
+                fig12_caption: '自適應家具',
+                fig13_caption: '家具分析',
+                fig14_caption: '載荷位移',
+                fig15_caption: '等效應力',
+                fig16_caption: '腳本'
+            }
+        };
+
+        // Function to update content based on selected language
+        function updateContent(lang) {
+            // Update active state of language buttons
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // Update language selector dropdown
+            const languageSelect = document.getElementById('language-select');
+            if (languageSelect) {
+                languageSelect.value = lang;
+            }
+
+            // Update all translatable elements (including navigation)
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Store the selected language in localStorage
+            localStorage.setItem('selectedProjectLanguage', lang);
+        }
+
+        // Add click event listeners to language buttons
+        document.querySelectorAll('.language-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                updateContent(lang);
+            });
+        });
+
+        // Add change event listener to language selector dropdown
+        const languageSelect = document.getElementById('language-select');
+        if (languageSelect) {
+            languageSelect.addEventListener('change', (e) => {
+                const lang = e.target.value;
+                updateContent(lang);
+            });
+        }
+
+        // Initialize with English as default language
+        document.addEventListener('DOMContentLoaded', () => {
+            updateContent('en');
+        });
+
+        // Photo album modal functionality
+        const modal = document.querySelector('.modal');
+        const modalImg = document.querySelector('.modal-image');
+        const closeBtn = document.querySelector('.close-modal');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const albumImages = document.querySelectorAll('.photo-album img');
+        const loading = document.querySelector('.loading');
+        let currentImageIndex = 0;
+
+        function openModal(index) {
+            currentImageIndex = index;
+            modal.style.display = 'flex';
+            updateModalImage();
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        function updateModalImage() {
+            loading.style.display = 'block';
+            modalImg.style.opacity = '0';
+            
+            modalImg.src = albumImages[currentImageIndex].src;
+            
+            modalImg.onload = () => {
+                loading.style.display = 'none';
+                modalImg.style.opacity = '1';
+            };
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % albumImages.length;
+            updateModalImage();
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + albumImages.length) % albumImages.length;
+            updateModalImage();
+        }
+
+        // Event Listeners
+        albumImages.forEach((img, index) => {
+            img.addEventListener('click', () => openModal(index));
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+        prevBtn.addEventListener('click', showPrevImage);
+        nextBtn.addEventListener('click', showNextImage);
+
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (modal.style.display === 'flex') {
+                if (e.key === 'ArrowLeft') showPrevImage();
+                if (e.key === 'ArrowRight') showNextImage();
+                if (e.key === 'Escape') closeModal();
+            }
+
+            // Prevent F12 key
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Prevent Ctrl+Shift+I (Chrome, Firefox, Safari)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Prevent Ctrl+Shift+J (Chrome, Firefox)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Prevent Ctrl+Shift+C (Chrome)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Prevent right-click context menu
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            return false;
+        });
+
+        // Prevent drag and drop of images
+        document.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+            return false;
+        });
+
+        // Smooth transition for modal image
+        modalImg.style.transition = 'opacity 0.3s ease';
+    </script>
+</body>
+</html> 
