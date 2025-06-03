@@ -219,11 +219,26 @@ main {
 }
 
 .profile-content {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-    max-width: 1000px;
+    width: 100%;
+    max-width: 800px;
     margin: 0 auto;
+}
+
+.language-version {
+    display: none;
+    margin: 20px 0;
+}
+
+.language-version h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+.language-version p {
+    font-size: 1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
 }
 
 .japanese, .english {

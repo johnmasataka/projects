@@ -11,8 +11,8 @@ const languageContent = {
         instagram: "Instagram",
         linkedin: "LinkedIn",
         // Main content
-        concept: "John Xianfeng Jiang's work",
-        // conceptDetail: "To maximize the potential of a place, simply providing a 'box' is not enough. We propose 'content' that makes each building have its own story. Centered around the 'SHARE' project, we will develop our business with a range of sizes and programs all over Japan.",
+        concept: "John Xianfeng Jiang",
+        conceptDetail: "A Project Manager, An Architect, An AI Researcher, and A Backpacker.",
         profile: "PROFILE",
         project: "SELECTED PROJECTS",
         // shareProject: "Archtalk",
@@ -20,6 +20,8 @@ const languageContent = {
         // About section
         aboutTitle: "John Xianfeng Jiang",
         aboutContent: "John (君安), also known as Masataka (賢峰), is a New York / Tokyo-based architect, AI researcher, and project manager. He has over eight years of professional experience at <a href=\"https://kkaa.co.jp/en/\" target=\"_blank\" style=\"color: inherit;\">Kengo Kuma & Associates (KKAA)</a>, where he has led teams on a wide range of projects, including luxury towers, resorts, private residences, and high-end furniture. His unique career bridges the confluence of management, technology, and design. He also worked for the <a href=\"https://c4sr.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">Center for Spatial Research (CSR)</a> at Columbia University, and is the member of the <a href=\"https://www.aij.or.jp/aijhome.htm\" target=\"_blank\" style=\"color: inherit;\">Architectural Institute of Japan (AIJ)</a>. John holds master's degree in computation in <a href=\"https://www.arch.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">Columbia University GSAPP</a> and architecture in <a href=\"https://www.global.hokudai.ac.jp/\" target=\"_blank\" style=\"color: inherit;\">Hokkaido University</a>.",
+                // Resume section
+        resume: "Awards<br><br>2021<br>Architectural Design Competition for European Film Center CAMERIMAGE Building (Toruń, Poland)<br>2020<br>Lighting Category Winner of Restaurant & Bar Design Awards (London, United Kingdom)<br>2017<br>Architectural Design Competition for New Taiwan Tower (Taichung)<br><br><br>Professionships<br><br>2025 -<br>Co-founder, Spatial Intelligence Association (New York, USA)<br>2024 - 2025<br>Researcher, Center for Spatial Research (CSR) at Columbia University (New York, USA)<br>2017 -<br>Project Manager, Kengo Kuma & Associates (Tokyo, Japan and Los Angeles, USA)<br>2017 -<br>Architectural Institute of Japan (AIJ)<br><br><br>Teaching<br><br>2025<br>The Hague University of Applied Sciences (The Hague, Netherlands)<br>2024 - 2025<br>Columbia University GSAPP (New York, USA)<br>2021<br>Shandong University of Art & Design (Jinan, China)<br><br><br>Exhibitions and Publications<br><br>2025<br>Autodesk University 2025 (Nashville, USA)<br>2025<br>JAPANISM (New York, USA)<br>2025<br>LLMs-Driven Full Lifecycle Architectural Design, ASCE International Conference on Computing in Civil Engineering (New Orleans, USA)<br>2025<br>SIA Annual Exhibition 2025 (New York, USA)<br>2025<br>BULT EUR 2025 (The Hague, Netherlands)<br>2025<br>AI in AEC (Helsinki, Finland)<br>2025<br>LingoBIM: From Words to Design, URBAN Magazine (New York, USA)<br>2022<br>Triennale di Milano (Milan, Italy)<br>2021<br>World House Projects 2021, GA HOUSE 175 and GA Gallery (Tokyo, Japan)<br>2017<br>National Academic Conference of the Architectural Institute of Japan (Hiroshima, Japan)",
         // Footer
         copyright: "Copyright © - All Rights Reserved."
     },
@@ -35,7 +37,7 @@ const languageContent = {
         linkedin: "LinkedIn",
         // Main content
         concept: "ジョン・賢峰・蔣\nの作品",
-        // conceptDetail: "To maximize the potential of a place, simply providing a 'box' is not enough. We propose 'content' that makes each building have its own story. Centered around the 'SHARE' project, we will develop our business with a range of sizes and programs all over Japan.",
+        conceptDetail: "プロジェクトマネージャー、建築家、AI研究者、バックパッカー",
         profile: "プロフィール",
         project: "プロジェクト",
         // shareProject: "SHAREプロジェクトとは",
@@ -43,6 +45,8 @@ const languageContent = {
         // About section
         aboutTitle: "ジョン・賢峰・蔣",
         aboutContent: "蔣（ジャン）賢峰（マサタカ）はニューヨークと東京を拠点とする建築家、AI研究者、プロジェクトマネージャー。<a href=\"https://kkaa.co.jp/en/\" target=\"_blank\" style=\"color: inherit;\">隈研吾建築都市設計事務所</a> (KKAA) にてマネージャーを務め、高層集合住宅、リゾート、個人住宅、高級家具など、幅広い分野のプロジェクトに携わる。キャリアの中心にあるのは、マネジメント・テクノロジー・デザインの三領域をまたぐ横断的な実践。また、コロンビア大学の<a href=\"https://c4sr.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">空間研究センター（Center for Spatial Research）</a>に所属し、<a href=\"https://www.aij.or.jp/aijhome.htm\" target=\"_blank\" style=\"color: inherit;\">日本建築学会</a>正会員。蔣は<a href=\"https://www.arch.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">コロンビア大学</a>でコンピューティション学科卒業、<a href=\"https://www.global.hokudai.ac.jp/\" target=\"_blank\" style=\"color: inherit;\">北海道大学</a>で建築学科修了。",
+        // Resume section
+        resume: "受賞歴<br><br>2021年<br>欧州映画センター CAMERIMAGE 建築設計コンペティション（ポーランド・トルン）<br>2020年<br>Restaurant & Bar Design Awards 照明部門優勝（イギリス・ロンドン）<br>2017年<br>新台湾タワー建築設計コンペティション（台中）<br><br><br>職歴<br><br>2025年 -<br>空間知能協会（SIA）共同創設者（アメリカ・ニューヨーク）<br>2024年 - 2025年<br>コロンビア大学空間研究センター（CSR）研究員（アメリカ・ニューヨーク）<br>2017年 -<br>隈研吾建築都市設計事務所 プロジェクトマネージャー（日本・東京、アメリカ・ロサンゼルス）<br>2017年 -<br>日本建築学会（AIJ）正会員<br><br><br>教育活動<br><br>2025年<br>ハーグ応用科学大学（オランダ・ハーグ）<br>2024年 - 2025年<br>コロンビア大学（アメリカ・ニューヨーク）<br>2021年<br>山東芸術設計学院（中国・済南）<br><br><br>展示・出版<br><br>2025年<br>Autodesk University 2025（アメリカ・ナッシュビル）<br>2025年<br>JAPANISM（アメリカ・ニューヨーク）<br>2025年<br>LLMsを活用した建築設計のライフサイクル全体の自動化、ASCE International Conference on Computing in Civil Engineering（アメリカ・ニューオーリンズ）<br>2025年<br>SIA年次展示会2025（アメリカ・ニューヨーク）<br>2025年<br>BULT EUR 2025（オランダ・ハーグ）<br>2025年<br>AI in AEC（フィンランド・ヘルシンキ）<br>2025年<br>LingoBIM：言葉からデザインへ、URBAN Magazine（アメリカ・ニューヨーク）<br>2022年<br>ミラノ・トリエンナーレ（イタリア・ミラノ）<br>2021年<br>World House Projects 2021、GA HOUSE 175・GAギャラリー（日本・東京）<br>2017年<br>日本建築学会全国大会（日本・広島）",
         // Footer
         copyright: "Copyright © - All Rights Reserved."
     },
@@ -59,7 +63,7 @@ const languageContent = {
         linkedin: "LinkedIn",
         // Main content
         concept: "El trabajo de John Xianfeng Jiang",
-        // conceptDetail: "Para maximizar el potencial de un lugar, simplemente proporcionar una 'caja' no es suficiente. Proponemos 'contenido' que hace que cada edificio tenga su propia historia. Centrados en el proyecto 'SHARE', desarrollaremos nuestro negocio con una variedad de tamaños y programas en todo Japón.",
+        conceptDetail: "Arquitecto, investigador de IA, gerente de proyectos, viajero",
         profile: "PERFIL",
         project: "PROYECTOS",
         // shareProject: "¿Qué es el Proyecto SHARE?",
@@ -67,6 +71,7 @@ const languageContent = {
         // // About section
         aboutTitle: "John Xianfeng Jiang",
         aboutContent: "John es un arquitecto, investigador de IA y gerente de proyectos con sede en Nueva York/Tokio. Tiene más de ocho años de experiencia profesional en <a href=\"https://kkaa.co.jp/en/\" target=\"_blank\" style=\"color: inherit;\">Kengo Kuma & Associates (KKAA)</a>, donde ha liderado equipos en una amplia gama de proyectos, incluyendo torres de lujo, resorts, residencias privadas y muebles de alta gama. Su carrera única une la gestión, la tecnología y el diseño. También trabajó para el <a href=\"https://c4sr.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">Center for Spatial Research (CSR)</a> en la Universidad de Columbia y es miembro del <a href=\"https://www.aij.or.jp/aijhome.htm\" target=\"_blank\" style=\"color: inherit;\">Architectural Institute of Japan (AIJ)</a>. John tiene una maestría en computación en <a href=\"https://www.arch.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">Columbia University</a> y en arquitectura en <a href=\"https://www.global.hokudai.ac.jp/\" target=\"_blank\" style=\"color: inherit;\">Hokkaido University</a>.",
+        resume: "Awards<br><br>2021<br>Architectural Design Competition for European Film Center CAMERIMAGE Building (Toruń, Poland)<br>2020<br>Lighting Category Winner of Restaurant & Bar Design Awards (London, United Kingdom)<br>2017<br>Architectural Design Competition for New Taiwan Tower (Taichung)<br><br><br>Professionships<br><br>2025 -<br>Co-founder, Spatial Intelligence Association (New York, USA)<br>2024 - 2025<br>Researcher, Center for Spatial Research (CSR) at Columbia University (New York, USA)<br>2017 -<br>Project Manager, Kengo Kuma & Associates (Tokyo, Japan and Los Angeles, USA)<br>2017 -<br>Architectural Institute of Japan (AIJ)<br><br><br>Teaching<br><br>2025<br>The Hague University of Applied Sciences (The Hague, Netherlands)<br>2024 - 2025<br>Columbia University GSAPP (New York, USA)<br>2021<br>Shandong University of Art & Design (Jinan, China)<br><br><br>Exhibitions and Publications<br><br>2025<br>Autodesk University 2025 (Nashville, USA)<br>2025<br>JAPANISM (New York, USA)<br>2025<br>LLMs-Driven Full Lifecycle Architectural Design, ASCE International Conference on Computing in Civil Engineering (New Orleans, USA)<br>2025<br>SIA Annual Exhibition 2025 (New York, USA)<br>2025<br>BULT EUR 2025 (The Hague, Netherlands)<br>2025<br>AI in AEC (Helsinki, Finland)<br>2025<br>LingoBIM: From Words to Design, URBAN Magazine (New York, USA)<br>2022<br>Triennale di Milano (Milan, Italy)<br>2021<br>World House Projects 2021, GA HOUSE 175 and GA Gallery (Tokyo, Japan)<br>2017<br>National Academic Conference of the Architectural Institute of Japan (Hiroshima, Japan)",
         // Footer
         copyright: "Copyright © - Todos los derechos reservados."
     },
@@ -83,7 +88,7 @@ const languageContent = {
         linkedin: "LinkedIn",
         // Main content
         concept: "존 마사타카 시안펑 장의 컬럼비아 대학교 프로젝트",
-        // conceptDetail: "장소의 잠재력을 최대화하기 위해서는 단순히 '상자'를 제공하는 것만으로는 충분하지 않습니다. 우리는 각 건물이 자신만의 이야기를 갖도록 '콘텐츠'를 제안합니다. 'SHARE' 프로젝트를 중심으로 일본 전역에서 다양한 규모와 프로그램으로 사업을 발전시킬 것입니다.",
+        conceptDetail: "프로젝트 매니저, 건축가, AI 연구원, 배낭 여행자",
         profile: "프로필",
         project: "프로젝트",
         // shareProject: "SHARE 프로젝트란?",
@@ -91,6 +96,7 @@ const languageContent = {
         // // About section
         aboutTitle: "존 마사타카 시안펑 장",
         aboutContent: "존은 뉴욕/도쿄를 기반으로 하는 건축가, AI 연구원, 프로젝트 매니저입니다. 그는 <a href=\"https://kkaa.co.jp/en/\" target=\"_blank\" style=\"color: inherit;\">건고쿠마 앤드 어소시에이츠(KKAA)</a>에서 8년 이상의 전문 경력을 가지고 있으며, 럭셔리 타워, 리조트, 개인 주택, 하이엔드 가구 등 다양한 프로젝트에서 팀을 이끌었습니다. 그의 독특한 경력은 경영, 기술, 디자인의 융합을 연결합니다. 그는 또한 컬럼비아 대학의 <a href=\"https://c4sr.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">공간 연구 센터(CSR)</a>에서 일했으며 <a href=\"https://www.aij.or.jp/aijhome.htm\" target=\"_blank\" style=\"color: inherit;\">일본 건축 학회(AIJ)</a>의 회원입니다. 존은 <a href=\"https://www.arch.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">컬럼비아 대학 GSAPP</a>에서 계산학 석사, <a href=\"https://www.global.hokudai.ac.jp/\" target=\"_blank\" style=\"color: inherit;\">홋카이도 대학</a>에서 건축학 석사를 취득했습니다.",
+        resume: "Awards<br><br>2021<br>Architectural Design Competition for European Film Center CAMERIMAGE Building (Toruń, Poland)<br>2020<br>Lighting Category Winner of Restaurant & Bar Design Awards (London, United Kingdom)<br>2017<br>Architectural Design Competition for New Taiwan Tower (Taichung)<br><br><br>Professionships<br><br>2025 -<br>Co-founder, Spatial Intelligence Association (New York, USA)<br>2024 - 2025<br>Researcher, Center for Spatial Research (CSR) at Columbia University (New York, USA)<br>2017 -<br>Project Manager, Kengo Kuma & Associates (Tokyo, Japan and Los Angeles, USA)<br>2017 -<br>Architectural Institute of Japan (AIJ)<br><br><br>Teaching<br><br>2025<br>The Hague University of Applied Sciences (The Hague, Netherlands)<br>2024 - 2025<br>Columbia University GSAPP (New York, USA)<br>2021<br>Shandong University of Art & Design (Jinan, China)<br><br><br>Exhibitions and Publications<br><br>2025<br>Autodesk University 2025 (Nashville, USA)<br>2025<br>JAPANISM (New York, USA)<br>2025<br>LLMs-Driven Full Lifecycle Architectural Design, ASCE International Conference on Computing in Civil Engineering (New Orleans, USA)<br>2025<br>SIA Annual Exhibition 2025 (New York, USA)<br>2025<br>BULT EUR 2025 (The Hague, Netherlands)<br>2025<br>AI in AEC (Helsinki, Finland)<br>2025<br>LingoBIM: From Words to Design, URBAN Magazine (New York, USA)<br>2022<br>Triennale di Milano (Milan, Italy)<br>2021<br>World House Projects 2021, GA HOUSE 175 and GA Gallery (Tokyo, Japan)<br>2017<br>National Academic Conference of the Architectural Institute of Japan (Hiroshima, Japan)",
         // Footer
         copyright: "Copyright © - All Rights Reserved."
     },
@@ -107,7 +113,7 @@ const languageContent = {
         linkedin: "领英",
         // Main content
         concept: "蒋贤峰的作品",
-        // conceptDetail: "要最大化一个地方的潜力，仅仅提供一个'盒子'是不够的。我们提出'内容'，使每个建筑都有自己的故事。以'SHARE'项目为中心，我们将在日本各地开展各种规模和项目的业务。",
+        conceptDetail: "项目经理 | 建筑师 | AI研究员 | 背包客",
         profile: "简介",
         project: "精选作品",
         // shareProject: "什么是SHARE项目",
@@ -115,6 +121,8 @@ const languageContent = {
         // About section
         aboutTitle: "蒋贤峰",
         aboutContent: "蒋贤峰 (Xianfeng)，字君安 (John)，是一位常驻纽约和东京的建筑师、AI研究员和项目经理。他在<a href=\"https://kkaa.co.jp/en/\" target=\"_blank\" style=\"color: inherit;\">隈研吾建筑都市设计事务所（KKAA）</a>拥有超过八年的专业经验，曾领导团队完成各种项目，包括豪华塔楼、度假村、私人住宅和高端家具。他的职业生涯专注于管理、技术和设计。他还在<a href=\"https://c4sr.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">哥伦比亚大学空间研究中心（CSR）</a>工作，并且是<a href=\"https://www.aij.or.jp/aijhome.htm\" target=\"_blank\" style=\"color: inherit;\">日本建筑学会（AIJ）</a>的成员。蒋贤峰在<a href=\"https://www.arch.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">哥伦比亚大学</a>获得计算学硕士学位，在<a href=\"https://www.global.hokudai.ac.jp/\" target=\"_blank\" style=\"color: inherit;\">北海道大学</a>获得建筑学硕士学位。",
+        // Resume section for Simplified Chinese
+        resume: "获奖经历<br><br>2021年<br>欧洲电影中心 CAMERIMAGE 建筑设计竞赛（波兰·托伦）<br>2020年<br>Restaurant & Bar Design Awards 照明类别冠军（英国·伦敦）<br>2017年<br>新台湾塔建筑设计竞赛（台中）<br><br><br>工作经历<br><br>2025年 -<br>空间智能协会（SIA）联合创始人（美国·纽约）<br>2024年 - 2025年<br>哥伦比亚大学空间研究中心（CSR）研究员（美国·纽约）<br>2017年 -<br>隈研吾建筑都市设计事务所 项目经理（日本·东京，美国·洛杉矶）<br>2017年 -<br>日本建筑学会（AIJ）正式会员<br><br><br>任教经历<br><br>2025年<br>海牙应用科技大学（荷兰·海牙）<br>2024年 - 2025年<br>哥伦比亚大学（美国·纽约）<br>2021年<br>山东艺术设计学院（中国·济南）<br><br><br>展览与出版<br><br>2025年<br>Autodesk University 2025（美国·纳什维尔）<br>2025年<br>JAPANISM（美国·纽约）<br>2025年<br>利用LLMs实现建筑设计全生命周期自动化，ASCE International Conference on Computing in Civil Engineering（美国·新奥尔良）<br>2025年<br>SIA年度展览2025（美国·纽约）<br>2025年<br>BULT EUR 2025（荷兰·海牙）<br>2025年<br>AI in AEC（芬兰·赫尔辛基）<br>2025年<br>LingoBIM：从语言到设计，URBAN Magazine（美国·纽约）<br>2022年<br>米兰三年展（意大利·米兰）<br>2021年<br>World House Projects 2021，GA HOUSE 175·GA画廊（日本·东京）<br>2017年<br>日本建筑学会全国大会（日本·广岛）",
         // Footer
         copyright: "版权所有 © - 保留所有权利。"
     },
@@ -131,7 +139,7 @@ const languageContent = {
         linkedin: "LinkedIn",
         // Main content
         concept: "蔣賢峰的作品",
-        // conceptDetail: "要最大化一個地方的潛力，僅僅提供一個'盒子'是不夠的。我們提出'內容'，使每個建築都有自己的故事。以'SHARE'項目為中心，我們將在日本各地開展各種規模和項目的業務。",
+        conceptDetail: "專案經理 | 建築師 | AI研究員 | 背包客",
         profile: "簡介",
         project: "精選作品",
         // shareProject: "什麼是SHARE項目",
@@ -139,6 +147,8 @@ const languageContent = {
         // About section
         aboutTitle: "蔣賢峰",
         aboutContent: "蔣賢峰 (Masataka)，字君安（John），是一位長期居住於紐約與東京的建築師、AI 研究員以及專案經理。他在<a href=\"https://kkaa.co.jp/en/\" target=\"_blank\" style=\"color: inherit;\">隈研吾建築都市設計事務所（KKAA）</a>擁有超過八年的專業經驗，曾領導團隊完成多項專案，包括豪華高樓、度假村、私人住宅與高端家具設計。他的職涯專注於管理、技術與設計三大領域。他亦曾於<a href=\"https://c4sr.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">哥倫比亞大學空間研究中心（CSR）</a>工作，並為<a href=\"https://www.aij.or.jp/aijhome.htm\" target=\"_blank\" style=\"color: inherit;\">日本建築學會（AIJ）</a>的成員。蔣賢峰擁有<a href=\"https://www.arch.columbia.edu/\" target=\"_blank\" style=\"color: inherit;\">哥倫比亞大學</a>計算學碩士學位，以及<a href=\"https://www.global.hokudai.ac.jp/\" target=\"_blank\" style=\"color: inherit;\">北海道大學</a>建築學碩士學位。",
+        // Resume section for Traditional Chinese
+        resume: "獲獎經歷<br><br>2021年<br>歐洲電影中心 CAMERIMAGE 建築設計競賽（波蘭·托倫）<br>2020年<br>Restaurant & Bar Design Awards 照明類別冠軍（英國·倫敦）<br>2017年<br>新台灣塔建築設計競賽（台中）<br><br><br>工作經歷<br><br>2025年 -<br>空間智能協會（SIA）聯合創始人（美國·紐約）<br>2024年 - 2025年<br>哥倫比亞大學空間研究中心（CSR）研究員（美國·紐約）<br>2017年 -<br>隈研吾建築都市設計事務所 專案經理（日本·東京，美國·洛杉磯）<br>2017年 -<br>日本建築學會（AIJ）正式會員<br><br><br>任教經歷<br><br>2025年<br>海牙應用科技大學（荷蘭·海牙）<br>2024年 - 2025年<br>哥倫比亞大學（美國·紐約）<br>2021年<br>山東藝術設計學院（中國·濟南）<br><br><br>展覽與出版<br><br>2025年<br>Autodesk University 2025（美國·納什維爾）<br>2025年<br>JAPANISM（美國·紐約）<br>2025年<br>利用LLMs實現建築設計全生命週期自動化，ASCE International Conference on Computing in Civil Engineering（美國·紐奧爾良）<br>2025年<br>SIA年度展覽2025（美國·紐約）<br>2025年<br>BULT EUR 2025（荷蘭·海牙）<br>2025年<br>AI in AEC（芬蘭·赫爾辛基）<br>2025年<br>LingoBIM：從語言到設計，URBAN Magazine（美國·紐約）<br>2022年<br>米蘭三年展（義大利·米蘭）<br>2021年<br>World House Projects 2021，GA HOUSE 175·GA畫廊（日本·東京）<br>2017年<br>日本建築學會全國大會（日本·廣島）",
         // Footer
         copyright: "版權所有 © - 保留所有權利。"
     }
@@ -174,6 +184,11 @@ function updateContent(language) {
         const profileTitle = mainContent.querySelector('.profile h2');
         if (profileTitle) profileTitle.textContent = content.profile;
 
+        // Update language-specific profile content
+        document.querySelectorAll('.language-version').forEach(version => {
+            version.style.display = version.getAttribute('data-lang') === language ? 'block' : 'none';
+        });
+
         // Update project section
         const projectTitle = mainContent.querySelector('.project h2');
         if (projectTitle) projectTitle.innerHTML = content.project;
@@ -182,8 +197,11 @@ function updateContent(language) {
         const aboutTitle = mainContent.querySelector('.about h1');
         if (aboutTitle) aboutTitle.textContent = content.aboutTitle;
 
-        const aboutContent = mainContent.querySelector('.about-content p');
+        const aboutContent = mainContent.querySelector('.about-content p[data-key="aboutContent"]');
         if (aboutContent) aboutContent.innerHTML = content.aboutContent;
+
+        const resume = mainContent.querySelector('.about-content p[data-key="resume"]');
+        if (resume && content.resume) resume.innerHTML = content.resume;
     }
 
     // Update footer

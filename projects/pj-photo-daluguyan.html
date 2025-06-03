@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header and Navigation */
+        header {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .language-selector select {
+            padding: 8px 30px 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 14px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .language-selector select:focus {
+            outline: none;
+            border-color: #333;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+        }
+
+        /* Project-specific styles */
+        main {
+            margin-top: 0; /* Override the default margin from styles.css */
+            padding: 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 65vh;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            margin-top: 60px; /* Add margin to account for fixed header */
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            padding: 2rem;
+            max-width: 50%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                max-width: 90%;
+            }
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: #000;
+            padding: 0;
+            width: 100%;
+            text-align: left;
+        }
+
+        .language-options {
+            display: flex;
+            gap: 0.1rem;
+            margin-bottom: 2rem;
+            padding: 0;
+            width: 100%;
+        }
+
+        .language-btn {
+            padding: 0.5rem 0;
+            margin-right: 2rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            text-align: left;
+        }
+
+        .language-btn.active {
+            opacity: 1;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .project-details {
+            margin-bottom: 2rem;
+            padding: 0;
+        }
+
+        .project-details p {
+            margin: 0.5rem 0;
+            padding: 0;
+        }
+
+        .project-description {
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .project-description p {
+            margin-bottom: 0.75rem;
+        }
+
+        .project-description p:last-child {
+            margin-bottom: 0;
+        }
+
+        .photo-album {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 0.1rem;
+            padding: 2rem 0;
+        }
+
+        .photo-album img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border-radius: 4px;
+        }
+
+        .photo-album img:hover {
+            transform: scale(1.02);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-image {
+            max-width: 85%;
+            max-height: 85vh;
+            object-fit: contain;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            pointer-events: none;
+        }
+
+        .modal-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            color: white;
+            font-size: 2rem;
+            border-radius: 50%;
+            transition: background-color 0.3s, transform 0.3s;
+            pointer-events: auto;
+        }
+
+        .modal-nav button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            transition: transform 0.3s;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.1);
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            display: none;
+        }
+
+        /* Video Container Styles */
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="../index.html" data-translate="nav_home">Home</a></li>
+                <li><a href="../about.html" data-translate="nav_about">About</a></li>
+                <li><a href="../contact.html" data-translate="nav_contact">Contact</a></li>
+                <li><a href="../map.html" data-translate="nav_map">Map</a></li>
+                <li><a href="../work.html" data-translate="nav_work">Work</a></li>
+                <li><a href="https://www.instagram.com/jjjhiker/" target="_blank" data-translate="nav_instagram">Instagram</a></li>
+                <li><a href="https://www.linkedin.com/in/johnmasataka-xianfeng-jiang/" target="_blank" data-translate="nav_linkedin">LinkedIn</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en" data-lang="en">English</option>
+                <option value="ja" data-lang="ja">日本語</option>
+                <option value="zh-CN" data-lang="zh-CN">简体中文</option>
+                <option value="zh-TW" data-lang="zh-TW">繁體中文</option>
+            </select>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero-image">
+            <img src="../images/daluguyan.jpg" alt="Project Hero Image">
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="project-title" data-translate="title">Project Name</h1>
+            
+            <div class="language-options">
+                <button class="language-btn active" data-lang="en">English</button>
+                <button class="language-btn" data-lang="ja">日本語</button>
+                <button class="language-btn" data-lang="zh-CN">简体中文</button>
+                <button class="language-btn" data-lang="zh-TW">繁體中文</button>
+            </div>
+
+            <div class="project-details">
+                <p><strong data-translate="link">Link</strong>: <span data-translate="linkContent"></span></p>
+                <p><strong data-translate="publication">Publication</strong>: <span data-translate="publicationContent"></span></p>
+                <p><strong data-translate="location">Location</strong>: <span data-translate="locationContent"></span></p>
+                <p><strong data-translate="program">Program</strong>: <span data-translate="programContent"></span></p>
+                <p><strong data-translate="year">Year</strong>: <span data-translate="yearContent"></span></p>
+                <p><strong data-translate="team">Team</strong>: <span data-translate="teamContent"></span></p>
+                <!-- <p><strong data-translate="info">Info</strong>: <span data-translate="infoContent">[Info Placeholder]</span></p> -->
+            </div>
+
+            <div class="video-container">
+                <iframe 
+                width="100%" 
+                height="100%" 
+                src="https://www.youtube.com/embed/zCuPVAOvyF8"
+                title="Hitchhiking Around China"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen>
+            </iframe>            
+            </div>
+
+            <div class="project-description">
+                <p data-translate="description1">[Project description paragraph 1 placeholder]</p>
+                <!-- <p data-translate="description2">[Project description paragraph 2 placeholder]</p>
+                <p data-translate="description3">[Project description paragraph 3 placeholder]</p>
+                <p data-translate="description4">[Project description paragraph 4 placeholder]</p>
+                <p data-translate="description5">[Project description paragraph 5 placeholder]</p>
+                <p data-translate="description6">[Project description paragraph 6 placeholder]</p>
+                <p data-translate="description7">[Project description paragraph 7 placeholder]</p> -->
+            </div>
+        </div>
+
+        <div class="photo-album">
+            <img src="./pj-images/pj-photo-daluguyan/daluguyan-1.png" alt="Project Image 1">
+            <img src="./pj-images/pj-photo-daluguyan/daluguyan-2.png" alt="Project Image 2">  
+            <img src="./pj-images/pj-photo-daluguyan/daluguyan-3.png" alt="Project Image 3">
+            <img src="./pj-images/pj-photo-daluguyan/daluguyan-4.png" alt="Project Image 4">
+            <img src="./pj-images/pj-photo-daluguyan/daluguyan-5.png" alt="Project Image 5">
+            <img src="./pj-images/pj-photo-daluguyan/daluguyan-6.png" alt="Project Image 6">
+        </div>
+
+        <div class="modal">
+            <button class="close-modal">×</button>
+            <div class="modal-content">
+                <img class="modal-image" src="" alt="Modal Image">
+                <div class="modal-nav">
+                    <button class="prev-btn">←</button>
+                    <button class="next-btn">→</button>
+                </div>
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright © - All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Prevent right-click on the entire page
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Prevent drag and drop of images
+        document.addEventListener('dragstart', (e) => e.preventDefault());
+
+        // Language content including navigation translations
+        const translations = {
+            'en': {
+                // Navigation
+                nav_home: 'Home',
+                nav_about: 'About',
+                nav_contact: 'Contact',
+                nav_map: 'Map',
+                nav_work: 'Work',
+                nav_instagram: 'Instagram',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: 'Hitchhiking Around China',
+                link: 'Link',
+                linkContent: 'Watch on YouTube',
+                publication: 'Publication',
+                publicationContent: 'Hubei Television 2012',
+                location: 'Location',
+                locationContent: 'China, Hong Kong, Macao, Taiwan',
+                program: 'Program',
+                programContent: 'Documentary, Film',
+                year: 'Year',
+                yearContent: '2013',
+                team: 'Team',
+                teamContent: 'John Xianfeng Jiang, Zhen Yu, Zhitao Wang',
+                description1: 'A few years ago, I completed a hitchhiking journey around China. It was my first time using a camera to document the trip. I felt hesitant to edit and share the footage at first, due to my lack of shooting skills. At that time, smartphones weren\'t as widespread as they are today. During the journey, we traveled across several provinces, from cities to deserts, from plateaus to seas, relying on 88 rides over the course of several months. I'm grateful to two friends who joined me on different parts of the journey, as well as to all the drivers who gave us a ride.'
+            },
+            'ja': {
+                // Navigation
+                nav_home: 'ホーム',
+                nav_about: '概要',
+                nav_contact: 'お問い合わせ',
+                nav_map: '地図',
+                nav_work: 'プロジェクト',
+                nav_instagram: 'Instagram',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: '中国一周！ヒッチハイクの旅',
+                link: 'リンク',
+                linkContent: 'YouTube で視聴',
+                publication: '取材',
+                publicationContent: '湖北ビデオテレビ',
+                location: '場所',
+                locationContent: '中国大陸，香港，澳門，台灣',
+                program: 'プログラム',
+                programContent: 'ドキュメンタリー, 映画',
+                year: '年',
+                yearContent: '2013',
+                team: 'チーム',
+                teamContent: 'ジョン・賢峰・蔣, 喻　震, 王　智涛',
+                description1: '数年前、ヒッチハイクで中国一周を達成した。旅の記録をドキュメンタリーにするために、自ら初めてカメラを手に取った。当時は撮影技術も未熟で、編集や公開にためらいがあった。スマートフォンがまだ一般的ではなかったその頃、都会から砂漠、高原から海まで、数十の省や自治区を横断した。トラックを含め、計88台の車に乗せてもらい、数ヶ月間で2万kmを超える旅となった。この旅で私を運んでくれたすべてのドライバーに、心から感謝しています。',
+            },
+            'zh-CN': {
+                // Navigation
+                nav_home: '首页',
+                nav_about: '关于',
+                nav_contact: '联系',
+                nav_map: '地图',
+                nav_work: '作品',
+                nav_instagram: 'INS',
+                nav_linkedin: '领英',
+                // Project content
+                title: '搭车环行中华纪录短片《大路孤焉》',
+                link: '链接',
+                linkContent: '点击进入 YouTube',
+                publication: '采访',
+                publicationContent: '湖北广播电视台',
+                location: '地点',
+                locationContent: '中国大陆，香港，澳门，台湾',
+                program: '类型',
+                programContent: '纪录片, 电影',
+                year: '年份',
+                yearContent: '2013',
+                team: '团队',
+                teamContent: '蒋贤峰, 喻震, 王智涛',
+                description1: '数年前完成的一次环行中华的搭车旅行，当时还是第一次拿起摄像机为自己制作旅行纪录片，鉴于糟糕的拍摄技术一直羞于剪辑和发布。当时在智能手机还没有完全普及的情况下，搭顺风车穿越数十个省市自治区，从城市到沙漠，从高原到大海，前后历时数月，穿越两万多公里，搭车88辆。非常感谢先后同行的两位哥们以及愿意搭载我们的司机师傅们。'
+            },
+            'zh-TW': {
+                // Navigation
+                nav_home: '首頁',
+                nav_about: '關於',
+                nav_contact: '聯絡',
+                nav_map: '地圖',
+                nav_work: '作品',
+                nav_instagram: 'IG',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: '搭車環行中華紀錄短片《大路孤焉》',
+                link: '鏈接',
+                linkContent: '點擊進入 YouTube',
+                publication: '採訪',
+                publicationContent: '湖北廣播電視台',
+                location: '地點',
+                locationContent: '中國大陸，香港，澳門，台灣',
+                program: '類型',
+                programContent: '紀錄片, 電影',
+                year: '年份',
+                yearContent: '2013',
+                team: '團隊',
+                teamContent: '蔣　賢峰, 喻　震, 王　智濤',
+                description1: '数年前，我完成了一趟環繞中華的搭便車之旅。那是我第一次拿起攝影機，試著為自己記錄旅程、製作紀錄片。由於當時拍攝技巧不成熟，一直對剪輯與公開感到不好意思。那時智慧型手機還沒那麼普及，我搭著順風車，橫跨數十個省市與自治區，從城市到沙漠，從高原到大海，歷時數個月、總共行駛超過兩萬公里，總共搭了88台車。真心感謝在路上遇到的兩位旅伴，以及所有願意載我們一程的司機朋友們。'
+            }
+        };
+
+        // Function to update content based on selected language
+        function updateContent(lang) {
+            // Update active state of language buttons
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // Update language selector dropdown
+            const languageSelect = document.getElementById('language-select');
+            if (languageSelect) {
+                languageSelect.value = lang;
+            }
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    if (key === 'linkContent') {
+                        element.innerHTML = `<a href="https://www.youtube.com/watch?v=zCuPVAOvyF8" target="_blank" style="text-decoration: underline;">${translations[lang][key]}</a>`;
+                    } else {
+                    element.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // Store the selected language in localStorage
+            localStorage.setItem('selectedProjectLanguage', lang);
+        }
+
+        // Add click event listeners to language buttons
+        document.querySelectorAll('.language-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                updateContent(lang);
+            });
+        });
+
+        // Add change event listener to language selector dropdown
+        const languageSelect = document.getElementById('language-select');
+        if (languageSelect) {
+            languageSelect.addEventListener('change', (e) => {
+                const lang = e.target.value;
+                updateContent(lang);
+            });
+        }
+
+        // Initialize with English as default language
+        document.addEventListener('DOMContentLoaded', () => {
+            updateContent('en');
+        });
+
+        // Photo album modal functionality
+        const modal = document.querySelector('.modal');
+        const modalImg = document.querySelector('.modal-image');
+        const closeBtn = document.querySelector('.close-modal');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const albumImages = document.querySelectorAll('.photo-album img');
+        const loading = document.querySelector('.loading');
+        let currentImageIndex = 0;
+
+        function openModal(index) {
+            currentImageIndex = index;
+            modal.style.display = 'flex';
+            updateModalImage();
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        function updateModalImage() {
+            loading.style.display = 'block';
+            modalImg.style.opacity = '0';
+            
+            modalImg.src = albumImages[currentImageIndex].src;
+            
+            modalImg.onload = () => {
+                loading.style.display = 'none';
+                modalImg.style.opacity = '1';
+            };
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % albumImages.length;
+            updateModalImage();
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + albumImages.length) % albumImages.length;
+            updateModalImage();
+        }
+
+        // Event Listeners
+        albumImages.forEach((img, index) => {
+            img.addEventListener('click', () => openModal(index));
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+        prevBtn.addEventListener('click', showPrevImage);
+        nextBtn.addEventListener('click', showNextImage);
+
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (modal.style.display === 'flex') {
+                if (e.key === 'ArrowLeft') showPrevImage();
+                if (e.key === 'ArrowRight') showNextImage();
+                if (e.key === 'Escape') closeModal();
+            }
+
+            // Prevent F12 key
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Prevent Ctrl+Shift+I (Chrome, Firefox, Safari)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Prevent Ctrl+Shift+J (Chrome, Firefox)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Prevent Ctrl+Shift+C (Chrome)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Prevent right-click context menu
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            return false;
+        });
+
+        // Prevent drag and drop of images
+        document.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+            return false;
+        });
+
+        // Smooth transition for modal image
+        modalImg.style.transition = 'opacity 0.3s ease';
+    </script>
+</body>
+</html> 
