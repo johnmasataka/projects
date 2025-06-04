@@ -36,7 +36,7 @@ const languageContent = {
         instagram: "Instagram",
         linkedin: "LinkedIn",
         // Main content
-        concept: "ジョン・賢峰・蔣\nの作品",
+        concept: "ジョン・賢峰・蔣",
         conceptDetail: "プロジェクトマネージャー、建築家、AI研究者、バックパッカー",
         profile: "プロフィール",
         project: "プロジェクト",
@@ -62,7 +62,7 @@ const languageContent = {
         instagram: "Instagram",
         linkedin: "LinkedIn",
         // Main content
-        concept: "El trabajo de John Xianfeng Jiang",
+        concept: "John Xianfeng Jiang",
         conceptDetail: "Arquitecto, investigador de IA, gerente de proyectos, viajero",
         profile: "PERFIL",
         project: "PROYECTOS",
@@ -87,7 +87,7 @@ const languageContent = {
         instagram: "Instagram",
         linkedin: "LinkedIn",
         // Main content
-        concept: "존 마사타카 시안펑 장의 컬럼비아 대학교 프로젝트",
+        concept: "존 마사타카 시안펑 장",
         conceptDetail: "프로젝트 매니저, 건축가, AI 연구원, 배낭 여행자",
         profile: "프로필",
         project: "프로젝트",
@@ -112,7 +112,7 @@ const languageContent = {
         instagram: "INS",
         linkedin: "领英",
         // Main content
-        concept: "蒋贤峰的作品",
+        concept: "蒋贤峰",
         conceptDetail: "项目经理 | 建筑师 | AI研究员 | 背包客",
         profile: "简介",
         project: "精选作品",
@@ -138,7 +138,7 @@ const languageContent = {
         instagram: "IG",
         linkedin: "LinkedIn",
         // Main content
-        concept: "蔣賢峰的作品",
+        concept: "蔣賢峰",
         conceptDetail: "專案經理 | 建築師 | AI研究員 | 背包客",
         profile: "簡介",
         project: "精選作品",
