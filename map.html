@@ -64,6 +64,8 @@
             z-index: 1000;
             max-width: 300px;
             display: none;
+            max-height: 80vh; /* Limit height to 80% of viewport height */
+            overflow: hidden; /* Hide overflow for main container */
         }
         .location-header {
             text-align: center;
@@ -71,6 +73,10 @@
             padding-bottom: 10px;
             border-bottom: 1px solid #eee;
             font-family: 'Lexend', sans-serif;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1;
         }
         .location-header h3 {
             font-size: 18px;
@@ -85,11 +91,15 @@
         }
         .project-preview-image {
             width: 100%;
-            height: 200px;
+            height: 150px; /* Reduced height to show more projects */
             background-size: cover;
             background-position: center;
             border-radius: 4px;
             margin-bottom: 8px;
+            transition: transform 0.2s;
+        }
+        .project-preview-image:hover {
+            transform: scale(1.02); /* Subtle zoom on hover */
         }
         .project-preview-title {
             font-family: 'Lexend', sans-serif;
@@ -102,6 +112,34 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
+            max-height: calc(80vh - 100px); /* Account for header height */
+            overflow-y: auto; /* Make projects container scrollable */
+            padding-right: 5px; /* Space for scrollbar */
+        }
+        /* Style the scrollbar */
+        .preview-container::-webkit-scrollbar {
+            width: 6px;
+        }
+        .preview-container::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 3px;
+        }
+        .preview-container::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 3px;
+        }
+        .preview-container::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+        .project-link {
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .project-link:hover {
+            transform: scale(1.02);
         }
     </style>
 </head>
@@ -244,55 +282,87 @@
                 // Create marker element
                 const el = document.createElement('div');
                 el.className = 'marker';
-                el.style.width = '16px';
-                el.style.height = '16px';
-                el.style.backgroundColor = '#383838';
-                el.style.border = '2px solid #ffffff';
-                el.style.borderRadius = '50%';
-                el.style.cursor = 'pointer';
-                el.style.boxShadow = '0 0 2px rgba(0,0,0,0.3)';
-
-                // Create and add the marker
-                const marker = new mapboxgl.Marker(el)
-                    .setLngLat(city.coordinates)
-                    .addTo(map);
-
-                // Show projects on hover
-                el.addEventListener('mouseenter', async (e) => {
-                    const projects = await getProjectsForCity(city.name);
-                    if (projects.length > 0) {
-                        // Create preview content with location header
-                        let previewContent = `
-                            <div class="location-header">
-                                <h3>${city.name}</h3>
-                                <p>${city.country}</p>
-                            </div>
-                            <div class="preview-container">
-                        `;
-                        projects.forEach(project => {
-                            previewContent += `
-                                <div>
-                                    <div class="project-preview-image" style="background-image: url(${project.imageUrl})"></div>
-                                    <div class="project-preview-title">${project.title}</div>
-                                </div>
-                            `;
-                        });
-                        previewContent += '</div>';
-
-                        // Update and show popup
-                        previewPopup.innerHTML = previewContent;
-                        previewPopup.style.display = 'block';
-                        
-                        // Position popup near the marker
-                        const markerRect = el.getBoundingClientRect();
-                        previewPopup.style.left = `${markerRect.right + 10}px`;
-                        previewPopup.style.top = `${markerRect.top}px`;
+                
+                // Get projects count first
+                getProjectsForCity(city.name).then(projects => {
+                    const projectCount = projects.length;
+                    // Base size is 16 px, increase exponentially with number of projects
+                    const size = projectCount === 0 ? 16 : Math.min(16 + Math.pow(projectCount, 1.5), 50); 
+                    // Base size is 16px, scales linearly with project count
+                    // const baseSize = 16;
+                    // const size = projectCount === 0 ? baseSize : baseSize * projectCount;
+                    
+                    el.style.width = `${size}px`;
+                    el.style.height = `${size}px`;
+                    el.style.backgroundColor = '#383838';
+                    el.style.border = '2px solid #ffffff';
+                    el.style.borderRadius = '50%';
+                    el.style.cursor = 'pointer';
+                    el.style.boxShadow = '0 0 2px rgba(0,0,0,0.3)';
+                    
+                    // Add project count if there are projects
+                    if (projectCount > 0) {
+                        el.style.display = 'flex';
+                        el.style.alignItems = 'center';
+                        el.style.justifyContent = 'center';
+                        el.style.color = '#ffffff';
+                        el.style.fontSize = `${Math.max(10, size/2)}px`;
+                        el.style.fontFamily = "'Lexend', sans-serif";
+                        el.style.fontWeight = '500';
+                        el.innerText = projectCount.toString();
                     }
-                });
 
-                // Hide preview on mouse leave
-                el.addEventListener('mouseleave', () => {
-                    previewPopup.style.display = 'none';
+                    // Create and add the marker
+                    const marker = new mapboxgl.Marker(el)
+                        .setLngLat(city.coordinates)
+                        .addTo(map);
+
+                    // Handle click on marker
+                    el.addEventListener('click', async (e) => {
+                        e.stopPropagation(); // Prevent document click from immediately closing
+                        
+                        const projects = await getProjectsForCity(city.name);
+                        if (projects.length > 0) {
+                            // Create preview content with location header
+                            let previewContent = `
+                                <div class="location-header">
+                                    <h3>${city.name}</h3>
+                                    <p>${city.country}</p>
+                                </div>
+                                <div class="preview-container">
+                            `;
+                            projects.forEach(project => {
+                                previewContent += `
+                                    <div>
+                                        <a href="work.html#${project.title.toLowerCase().replace(/\s+/g, '-')}" class="project-link" target="_blank">
+                                            <div class="project-preview-image" style="background-image: url(${project.imageUrl})"></div>
+                                            <div class="project-preview-title">${project.title}</div>
+                                        </a>
+                                    </div>
+                                `;
+                            });
+                            previewContent += '</div>';
+
+                            // Update and show popup
+                            previewPopup.innerHTML = previewContent;
+                            previewPopup.style.display = 'block';
+                            
+                            // Position popup near the marker
+                            const markerRect = el.getBoundingClientRect();
+                            previewPopup.style.left = `${markerRect.right + 10}px`;
+                            previewPopup.style.top = `${markerRect.top}px`;
+                        }
+                    });
+
+                    // Close popup when clicking outside
+                    document.addEventListener('click', (e) => {
+                        const isOverMarker = el.contains(e.target) || el === e.target;
+                        const isOverPopup = previewPopup.contains(e.target) || previewPopup === e.target;
+                        
+                        if (!isOverMarker && !isOverPopup) {
+                            previewPopup.style.display = 'none';
+                        }
+                    });
                 });
             });
 
