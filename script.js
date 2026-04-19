@@ -11,8 +11,8 @@ const languageContent = {
         instagram: "Instagram",
         linkedin: "LinkedIn",
         // Main content
-        concept: "John Xianfeng Jiang",
-        conceptDetail: "A Project Manager, An Architect, An AI Researcher, and A Backpacker.",
+        // concept: "John Xianfeng Jiang",
+        // conceptDetail: "A Project Manager, An Architect, An AI Researcher, and A Backpacker.",
         profile: "PROFILE",
         project: "SELECTED PROJECTS",
         // shareProject: "Archtalk",
@@ -44,8 +44,8 @@ John holds a master’s degree in design technology, real estate in <a href="htt
         instagram: "Instagram",
         linkedin: "LinkedIn",
         // Main content
-        concept: "蔣　賢峰ジョン",
-        conceptDetail: "プロジェクトマネージャー、建築家、AI研究者、バックパッカー",
+        // concept: "蔣　賢峰ジョン",
+        // conceptDetail: "プロジェクトマネージャー、建築家、AI研究者、バックパッカー",
         profile: "プロフィール",
         project: "プロジェクト",
         // shareProject: "SHAREプロジェクトとは",
@@ -78,8 +78,8 @@ John holds a master’s degree in design technology, real estate in <a href="htt
         instagram: "INS",
         linkedin: "领英",
         // Main content
-        concept: "蒋贤峰",
-        conceptDetail: "项目经理 | 建筑师 | AI研究员 | 背包客",
+        // concept: "蒋贤峰",
+        // conceptDetail: "项目经理 | 建筑师 | AI研究员 | 背包客",
         profile: "简介",
         project: "精选作品",
         // shareProject: "什么是SHARE项目",
@@ -107,8 +107,8 @@ John holds a master’s degree in design technology, real estate in <a href="htt
         instagram: "IG",
         linkedin: "LinkedIn",
         // Main content
-        concept: "蔣賢峰",
-        conceptDetail: "專案經理 | 建築師 | AI研究員 | 背包客",
+        // concept: "蔣賢峰",
+        // conceptDetail: "專案經理 | 建築師 | AI研究員 | 背包客",
         profile: "簡介",
         project: "精選作品",
         // shareProject: "什麼是SHARE項目",
