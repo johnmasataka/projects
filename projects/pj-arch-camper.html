@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lexend', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Header and Navigation */
+        header {
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            padding: 10px;
+            margin: 0;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            border-radius: 4px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background-color: #333;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .nav-backdrop {
+            display: none;
+        }
+
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+            margin-right: 20px;
+        }
+
+        .language-selector select {
+            padding: 8px 30px 8px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: white;
+            font-size: 14px;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+            font-family: 'Lexend', sans-serif;
+        }
+
+        .language-selector select:focus {
+            outline: none;
+            border-color: #333;
+        }
+
+        /* Responsive: hamburger + overlay nav */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-backdrop {
+                display: block;
+                position: fixed;
+                inset: 0;
+                top: 0;
+                background: rgba(0, 0, 0, 0.35);
+                z-index: 999;
+                opacity: 0;
+                visibility: hidden;
+                pointer-events: none;
+                transition: opacity 0.25s ease, visibility 0.25s ease;
+            }
+
+            .nav-backdrop.is-visible {
+                opacity: 1;
+                visibility: visible;
+                pointer-events: auto;
+            }
+
+            .main-nav {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: min(300px, 88vw);
+                height: 100vh;
+                margin: 0;
+                padding: calc(56px + 1.25rem) 1.25rem 1.5rem;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(8px);
+                z-index: 1000;
+                box-shadow: 4px 0 24px rgba(0, 0, 0, 0.12);
+                transform: translateX(-100%);
+                transition: transform 0.25s ease;
+                overflow-y: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .main-nav.is-open {
+                transform: translateX(0);
+            }
+
+            .main-nav ul {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.1rem;
+            }
+
+            header .main-nav {
+                flex: 0 0 0;
+                width: auto;
+                min-width: 0;
+                overflow: visible;
+            }
+
+            header .menu-toggle {
+                position: relative;
+                z-index: 1001;
+            }
+
+            .language-selector {
+                position: relative;
+                z-index: 1001;
+                margin-right: 0;
+            }
+        }
+
+        /* Project-specific styles */
+        main {
+            margin-top: 0; /* Override the default margin from styles.css */
+            padding: 0;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 65vh;
+            position: relative;
+            overflow: hidden;
+            user-select: none;
+            margin-top: 60px; /* Add margin to account for fixed header */
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            pointer-events: none;
+        }
+
+        .content-wrapper {
+            padding: 2rem;
+            max-width: 50%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        @media (max-width: 768px) {
+            .content-wrapper {
+                max-width: 90%;
+            }
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            margin-bottom: 2.5rem;
+            color: #000;
+            padding: 0;
+            width: 100%;
+            text-align: left;
+        }
+
+        .language-options {
+            display: flex;
+            gap: 0.1rem;
+            margin-bottom: 2rem;
+            padding: 0;
+            width: 100%;
+        }
+
+        .language-btn {
+            padding: 0.5rem 0;
+            margin-right: 2rem;
+            border: none;
+            background: none;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+            text-align: left;
+        }
+
+        .language-btn.active {
+            opacity: 1;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        .project-details {
+            margin-bottom: 2rem;
+            padding: 0;
+        }
+
+        .project-details p {
+            margin: 0.5rem 0;
+            padding: 0;
+        }
+
+        .project-description {
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            padding: 0;
+        }
+
+        .project-description p {
+            margin-bottom: 0.75rem;
+        }
+
+        .project-description p:last-child {
+            margin-bottom: 0;
+        }
+
+        .photo-album {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+            gap: 0.1rem;
+            padding: 2rem 0;
+        }
+
+        .photo-album img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+            border-radius: 4px;
+        }
+
+        .photo-album img:hover {
+            transform: scale(1.02);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            height: 90%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-image {
+            max-width: 85%;
+            max-height: 85vh;
+            object-fit: contain;
+            pointer-events: none;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+
+        .modal-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 2rem;
+            pointer-events: none;
+        }
+
+        .modal-nav button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            color: white;
+            font-size: 2rem;
+            border-radius: 50%;
+            transition: background-color 0.3s, transform 0.3s;
+            pointer-events: auto;
+        }
+
+        .modal-nav button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+            transition: transform 0.3s;
+            z-index: 1001;
+        }
+
+        .close-modal:hover {
+            transform: scale(1.1);
+        }
+
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 1.5rem;
+            display: none;
+        }
+    </style>
+</head>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-57VEQPXVGX"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-57VEQPXVGX');
+</script>
+
+<body>
+    <header>
+        <button type="button" class="menu-toggle" id="menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="main-nav">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="main-nav" class="main-nav" aria-label="Main navigation">
+            <ul>
+                <li><a href="../index.html" data-translate="nav_home">Home</a></li>
+                <li><a href="../about.html" data-translate="nav_about">About</a></li>
+                <li><a href="../contact.html" data-translate="nav_contact">Contact</a></li>
+                <li><a href="../map.html" data-translate="nav_map">Map</a></li>
+                <li><a href="../work.html" data-translate="nav_work">Work</a></li>
+                <li><a href="https://www.instagram.com/jjjhiker/" target="_blank" data-translate="nav_instagram">Instagram</a></li>
+                <li><a href="https://www.linkedin.com/in/johnmasataka-xianfeng-jiang/" target="_blank" data-translate="nav_linkedin">LinkedIn</a></li>
+            </ul>
+        </nav>
+        <div class="language-selector">
+            <select id="language-select">
+                <option value="en" data-lang="en">English</option>
+                <option value="ja" data-lang="ja">日本語</option>
+                <option value="zh-CN" data-lang="zh-CN">简体中文</option>
+                <option value="zh-TW" data-lang="zh-TW">繁體中文</option>
+            </select>
+        </div>
+    </header>
+    <div class="nav-backdrop" id="nav-backdrop" aria-hidden="true"></div>
+
+    <main>
+        <div class="hero-image">
+            <img src="../images/camper.jpg" alt="Project Hero Image">
+        </div>
+
+        <div class="content-wrapper">
+            <h1 class="project-title" data-translate="title">Project Name</h1>
+            
+            <div class="language-options">
+                <button class="language-btn active" data-lang="en">English</button>
+                <button class="language-btn" data-lang="ja">日本語</button>
+                <button class="language-btn" data-lang="zh-CN">简体中文</button>
+                <button class="language-btn" data-lang="zh-TW">繁體中文</button>
+            </div>
+
+            <div class="project-details">
+                <!-- <p><strong data-translate="award">Award</strong>: <span data-translate="awardContent">[Award Placeholder]</span></p>
+                <p><strong data-translate="publication">Publication</strong>: <span data-translate="publicationContent">[Publication Placeholder]</span></p> -->
+                <p><strong data-translate="location">Location</strong>: <span data-translate="locationContent">[Location Placeholder]</span></p>
+                <p><strong data-translate="program">Program</strong>: <span data-translate="programContent">[Program Placeholder]</span></p>
+                <p><strong data-translate="year">Year</strong>: <span data-translate="yearContent">[Year Placeholder]</span></p>
+                <!-- <p><strong data-translate="team">Team</strong>: <span data-translate="teamContent">[Team Placeholder]</span></p>
+                <p><strong data-translate="info">Info</strong>: <span data-translate="infoContent">[Info Placeholder]</span></p> -->
+            </div>
+
+            <div class="project-description">
+                <!-- <p data-translate="description1">[Project description paragraph 1 placeholder]</p>
+                <p data-translate="description2">[Project description paragraph 2 placeholder]</p> -->
+            </div>
+        </div>
+
+        <div class="photo-album">
+            <img src="./pj-images/pj-arch-camper/camper01.jpg" alt="Project Image 1">
+            <img src="./pj-images/pj-arch-camper/camper02.jpg" alt="Project Image 2">
+            <img src="./pj-images/pj-arch-camper/camper03.jpg" alt="Project Image 3">
+            <img src="./pj-images/pj-arch-camper/camper04.jpg" alt="Project Image 4">
+            <img src="./pj-images/pj-arch-camper/camper05.jpg" alt="Project Image 5">
+            <img src="./pj-images/pj-arch-camper/camper06.jpg" alt="Project Image 6">
+            <img src="./pj-images/pj-arch-camper/camper07.jpg" alt="Project Image 7">
+            <img src="./pj-images/pj-arch-camper/camper08.jpg" alt="Project Image 8">
+        </div>
+
+        <div class="modal">
+            <button class="close-modal">×</button>
+            <div class="modal-content">
+                <img class="modal-image" src="" alt="Modal Image">
+                <div class="modal-nav">
+                    <button class="prev-btn">←</button>
+                    <button class="next-btn">→</button>
+                </div>
+                <div class="loading">Loading...</div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Copyright ©John Xianfeng Jiang - All Rights Reserved. </p>
+    </footer>
+
+    <script>
+        // Prevent right-click on the entire page
+        document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+        // Prevent drag and drop of images
+        document.addEventListener('dragstart', (e) => e.preventDefault());
+
+        // Language content including navigation translations
+        const translations = {
+            'en': {
+                // Navigation
+                nav_home: 'Home',
+                nav_about: 'About',
+                nav_contact: 'Contact',
+                nav_map: 'Map',
+                nav_work: 'Work',
+                nav_instagram: 'Instagram',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: 'Retail Store in Spain',
+                // award: 'Award',
+                // awardContent: '[Award Placeholder]',
+                // publication: 'Publication',
+                // publicationContent: '[Publication Placeholder]',
+                location: 'Location',
+                locationContent: 'Barcelona, Spain',
+                program: 'Program',
+                programContent: 'Retail',
+                year: 'Year',
+                yearContent: '2018',
+            },
+            'ja': {
+                // Navigation
+                nav_home: 'ホーム',
+                nav_about: '概要',
+                nav_contact: 'お問い合わせ',
+                nav_map: '地図',
+                nav_work: 'プロジェクト',
+                nav_instagram: 'Instagram',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: 'スペインの小売店',
+                award: '受賞',
+                location: '場所',
+                locationContent: 'バルセロナ, スペイン',
+                program: '用途',
+                programContent: '小売',
+                year: '年',
+                yearContent: '2018',
+            },
+            'zh-CN': {
+                // Navigation
+                nav_home: '首页',
+                nav_about: '关于',
+                nav_contact: '联系',
+                nav_map: '地图',
+                nav_work: '作品',
+                nav_instagram: 'INS',
+                nav_linkedin: '领英',
+                // Project content
+                title: '项目名称',
+                award: '奖项',
+                location: '地点',
+                locationContent: '巴塞罗那, 西班牙',
+                program: '类型',
+                programContent: '零售',
+                year: '年份',
+                yearContent: '2018',
+            },
+            'zh-TW': {
+                // Navigation
+                nav_home: '首頁',
+                nav_about: '關於',
+                nav_contact: '聯絡',
+                nav_map: '地圖',
+                nav_work: '作品',
+                nav_instagram: 'IG',
+                nav_linkedin: 'LinkedIn',
+                // Project content
+                title: '專案名稱',
+                award: '獎項',
+                location: '地點',
+                locationContent: '巴塞羅那, 西班牙',
+                program: '類型',
+                programContent: '零售',
+                year: '年份',
+                yearContent: '2018',
+                team: '團隊',
+                yearContent: '2018',
+            }
+        };
+
+        // Function to update content based on selected language
+        function updateContent(lang) {
+            // Update active state of language buttons
+            document.querySelectorAll('.language-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+            });
+
+            // Update language selector dropdown
+            const languageSelect = document.getElementById('language-select');
+            if (languageSelect) {
+                languageSelect.value = lang;
+            }
+
+            // Update all translatable elements (including navigation)
+            document.querySelectorAll('[data-translate]').forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Store the selected language in localStorage
+            localStorage.setItem('selectedProjectLanguage', lang);
+        }
+
+        // Add click event listeners to language buttons
+        document.querySelectorAll('.language-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                updateContent(lang);
+            });
+        });
+
+        // Add change event listener to language selector dropdown
+        const languageSelect = document.getElementById('language-select');
+        if (languageSelect) {
+            languageSelect.addEventListener('change', (e) => {
+                const lang = e.target.value;
+                updateContent(lang);
+            });
+        }
+
+        // Mobile hamburger menu
+        (function initMobileNav() {
+            const menuToggle = document.getElementById('menu-toggle');
+            const mainNav = document.getElementById('main-nav');
+            const navBackdrop = document.getElementById('nav-backdrop');
+            if (!menuToggle || !mainNav || !navBackdrop) return;
+
+            function setMenuOpen(open) {
+                menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+                menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+                mainNav.classList.toggle('is-open', open);
+                navBackdrop.classList.toggle('is-visible', open);
+                navBackdrop.setAttribute('aria-hidden', open ? 'false' : 'true');
+                document.body.classList.toggle('menu-open', open);
+                if (open) {
+                    document.body.style.overflow = 'hidden';
+                } else if (document.querySelector('.modal')?.style.display !== 'flex') {
+                    document.body.style.overflow = '';
+                }
+            }
+
+            function closeMenu() {
+                setMenuOpen(false);
+            }
+
+            menuToggle.addEventListener('click', () => {
+                setMenuOpen(menuToggle.getAttribute('aria-expanded') !== 'true');
+            });
+
+            navBackdrop.addEventListener('click', closeMenu);
+
+            mainNav.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', closeMenu);
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && menuToggle.getAttribute('aria-expanded') === 'true') {
+                    closeMenu();
+                }
+            });
+
+            window.matchMedia('(min-width: 769px)').addEventListener('change', (e) => {
+                if (e.matches) closeMenu();
+            });
+        })();
+
+        // Initialize with English as default language
+        document.addEventListener('DOMContentLoaded', () => {
+            updateContent('en');
+        });
+
+        // Photo album modal functionality
+        const modal = document.querySelector('.modal');
+        const modalImg = document.querySelector('.modal-image');
+        const closeBtn = document.querySelector('.close-modal');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        const albumImages = document.querySelectorAll('.photo-album img');
+        const loading = document.querySelector('.loading');
+        let currentImageIndex = 0;
+
+        function openModal(index) {
+            currentImageIndex = index;
+            modal.style.display = 'flex';
+            updateModalImage();
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        function updateModalImage() {
+            loading.style.display = 'block';
+            modalImg.style.opacity = '0';
+            
+            modalImg.src = albumImages[currentImageIndex].src;
+            
+            modalImg.onload = () => {
+                loading.style.display = 'none';
+                modalImg.style.opacity = '1';
+            };
+        }
+
+        function showNextImage() {
+            currentImageIndex = (currentImageIndex + 1) % albumImages.length;
+            updateModalImage();
+        }
+
+        function showPrevImage() {
+            currentImageIndex = (currentImageIndex - 1 + albumImages.length) % albumImages.length;
+            updateModalImage();
+        }
+
+        // Event Listeners
+        albumImages.forEach((img, index) => {
+            img.addEventListener('click', () => openModal(index));
+        });
+
+        closeBtn.addEventListener('click', closeModal);
+        prevBtn.addEventListener('click', showPrevImage);
+        nextBtn.addEventListener('click', showNextImage);
+
+        // Close modal when clicking outside the image
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (modal.style.display === 'flex') {
+                if (e.key === 'ArrowLeft') showPrevImage();
+                if (e.key === 'ArrowRight') showNextImage();
+                if (e.key === 'Escape') closeModal();
+            }
+
+            // Prevent F12 key
+            if (e.key === 'F12' || e.keyCode === 123) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Prevent Ctrl+Shift+I (Chrome, Firefox, Safari)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.keyCode === 73)) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Prevent Ctrl+Shift+J (Chrome, Firefox)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j' || e.keyCode === 74)) {
+                e.preventDefault();
+                return false;
+            }
+
+            // Prevent Ctrl+Shift+C (Chrome)
+            if (e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c' || e.keyCode === 67)) {
+                e.preventDefault();
+                return false;
+            }
+        });
+
+        // Prevent right-click context menu
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
+            return false;
+        });
+
+        // Prevent drag and drop of images
+        document.addEventListener('dragstart', (e) => {
+            e.preventDefault();
+            return false;
+        });
+
+        // Smooth transition for modal image
+        modalImg.style.transition = 'opacity 0.3s ease';
+    </script>
+</body>
+</html> 
